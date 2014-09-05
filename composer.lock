@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cce6015a015d1aaf6f2cae97680d79b9",
+    "hash": "077ce0af45390bfb31033710256f7c9e",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -52,6 +52,56 @@
                 "preload"
             ],
             "time": "2014-03-12 00:05:31"
+        },
+        {
+            "name": "cornford/bootstrapper",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bradcornford/Bootstrapper.git",
+                "reference": "6fbd620c95224dad40638103a1c8744fe29260bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bradcornford/Bootstrapper/zipball/6fbd620c95224dad40638103a1c8744fe29260bd",
+                "reference": "6fbd620c95224dad40638103a1c8744fe29260bd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.1",
+                "phpspec/phpspec": "2.0.*@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cornford\\Bootstrapper": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bradley Cornford",
+                    "email": "me@bradleycornford.co.uk"
+                }
+            ],
+            "description": "An easy way to intergrate Twitter Bootstrap with Laravel 4.",
+            "keywords": [
+                "alerts",
+                "bootstrap",
+                "form",
+                "laravel",
+                "templates",
+                "twitter",
+                "views"
+            ],
+            "time": "2014-08-27 07:09:12"
         },
         {
             "name": "d11wtq/boris",

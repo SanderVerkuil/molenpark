@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://molenpark/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Cornford\Bootstrapper\BootstrapServiceProvider',
 
 	),
 
@@ -188,6 +189,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'Bootstrap'         => 'Cornford\Bootstrapper\Facades\Bootstrap',
 
 	),
 

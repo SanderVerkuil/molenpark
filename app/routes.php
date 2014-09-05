@@ -13,5 +13,12 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('home');
 });
+
+Route::get('users', function()
+  {
+    $users = User::all();
+
+    return View::make('users')->with('users',$users);
+  });
