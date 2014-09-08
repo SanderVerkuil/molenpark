@@ -11,6 +11,7 @@
 
     <!-- CSS are placed here -->
     {{ Bootstrap::css() }}
+    <!-- End CSS -->
 
     <style>
       @section('styles')
@@ -25,7 +26,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" daata-target=".navbar-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -34,7 +35,7 @@
 
           <a class="navbar-brand" href="#">Molenpark</a>
         </div>
-        <!-- Everything you wnt hidden at 940px or less, place within here -->
+        <!-- Everything you want hidden at 940px or less, place within here -->
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{{ URL::to('') }}}">Home</a></li>
@@ -42,15 +43,20 @@
         </div>
       </div>
     </div>
+    <!-- End Navbar -->
 
-    <!-- Container -->
+    <!-- Main Container -->
     <div class="container">
 
       <!-- Content -->
       @yield('content')
+      <!-- End Content -->
+
     </div>
+    <!-- End Main Container -->
 
     <!-- Scripts are placed here -->
     {{ Bootstrap::js() }}
+    <!-- End JS -->
   </body>
 </html>
