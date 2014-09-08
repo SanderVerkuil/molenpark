@@ -14,11 +14,18 @@
     <!-- End CSS -->
 
     <style>
-      @section('styles')
-        body {
-          padding-top: 60px;
-        }
+      body {
+        padding-top: 60px;
+      }
+      .modal {
+        overflow-y: auto;
+      }
     </style>
+    @yield('styles')
+
+    <!-- Scripts are placed here -->
+    {{ Bootstrap::js() }}
+    <!-- End JS -->
   </head>
 
   <body>
@@ -55,8 +62,5 @@
     </div>
     <!-- End Main Container -->
 
-    <!-- Scripts are placed here -->
-    {{ Bootstrap::js() }}
-    <!-- End JS -->
   </body>
 </html>
