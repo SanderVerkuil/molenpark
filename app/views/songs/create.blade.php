@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+  <div class="row">
     <div class="col-sm-6 youtube-search">
       <form role="form">
         <div class="form-group">
@@ -37,5 +38,5 @@
         </table>
       </div>
     </div>
-
+  </div>
 @stop

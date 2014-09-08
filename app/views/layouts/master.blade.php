@@ -62,9 +62,15 @@
     </div>
     <!-- End Navbar -->
 
-    <!-- Content -->
-    @yield('content')
-    <!-- End Content -->
+    <!-- Start of container -->
+    <div class="container-fluid">
+
+      <!-- Content -->
+      @yield('content')
+      <!-- End Content -->
+
+    </div>
+    <!-- End of container -->
 
     <!-- Start external javascript files -->
     @if (isset($javascripts))

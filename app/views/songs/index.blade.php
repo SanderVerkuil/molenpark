@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-sm-12">
-      <button type="button" class="btn btn-primary btn-block">Search</button>
+      <button type="button" class="btn btn-primary btn-block">Zoeken</button>
     </div>
   </form>
 @stop
