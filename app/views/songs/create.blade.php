@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-  <div class="row">
     <div class="col-sm-5 youtube-search">
       <form role="form">
         <div class="form-group">
@@ -21,7 +20,6 @@
         <button id="song-search" class="youtube btn btn-default">Zoeken</button>
       </form>
     </div>
-  </div>
 
     <div id="video-finder" class="col-sm-7 hidden-xs sidebar">
       <div class="video-wrapper"><iframe id="video-preview" src=""></iframe></div>
