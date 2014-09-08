@@ -11,6 +11,15 @@
 
     <!-- CSS are placed here -->
     {{ Bootstrap::css() }}
+    @if (isset($css))
+      @if (is_array($css))
+        @foreach ($css as $c)
+          <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/$c.css") }}">
+        @endforeach
+      @else
+        <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/$css.css") }}">
+      @endif
+    @endif
     <!-- End CSS -->
 
     <style>
@@ -53,15 +62,21 @@
     </div>
     <!-- End Navbar -->
 
-    <!-- Main Container -->
-    <div class="container">
+    <!-- Content -->
+    @yield('content')
+    <!-- End Content -->
 
-      <!-- Content -->
-      @yield('content')
-      <!-- End Content -->
-
-    </div>
-    <!-- End Main Container -->
+    <!-- Start external javascript files -->
+    @if (isset($javascripts))
+      @if (is_array($javascripts))
+        @foreach ($javascripts as $js)
+           <script src="{{ asset("assets/js/$js.js") }}"></script>
+        @endforeach
+      @else
+        <script src="{{ asset("assets/js/$javascripts.js") }}"></script>
+      @endif
+    @endif
+    <!-- End external javascript files -->
 
   </body>
 </html>

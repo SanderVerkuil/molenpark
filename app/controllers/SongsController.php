@@ -23,7 +23,9 @@ class SongsController extends Controller {
 	 */
 	public function create()
 	{
-		return View::make('songs.create');
+		$css = array("video-finder");
+		$js = array("youtube-sidebar");
+		return View::make('songs.create', array("css" => $css, "javascripts" => $js));
 	}
 
 	/**
