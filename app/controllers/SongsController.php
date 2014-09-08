@@ -35,7 +35,7 @@ class SongsController extends Controller {
 	{
 		Song::create(Request::get());
 
-		return Redirect::route('songs.index');
+		return Redirect::route('songs.index')->with();
 	}
 
 	/**
@@ -102,5 +102,20 @@ class SongsController extends Controller {
 
 		return View::make("youtube", array("artist" => $artist, "title" => $title));
 	}
+
+	public static function getStatus($statusId)
+	{
+		return $status[$statusId];
+	}
+
+	private $status = array(
+		0 => "aangevraagd",
+	  1 => "ingestemd",
+	  2 => "uitgestemd",
+	  3 => "gekocht MP3",
+	  4 => "gekocht CD",
+	  5 => "onvindbaar",
+	  6 => "in collectie"
+	);
 
 }
