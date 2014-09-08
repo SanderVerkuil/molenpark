@@ -8,7 +8,8 @@
 		"laravel/framework": "4.2.*",
 		"cornford/bootstrapper": "1.*",
 		"way/generators": "~3.0",
-		"google/apiclient": "1.0.*@beta"
+		"google/apiclient": "1.0.*@beta",
+		"doctrine/dbal": "dev-master"
 	},
 	"require-dev": {
     	"barryvdh/laravel-debugbar": "dev-master"
