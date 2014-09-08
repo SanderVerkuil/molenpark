@@ -1,6 +1,12 @@
 @extends("layouts/master")
 
 @section("content")
+
+<pre>
+  @foreach ($data->items as $searchresult)
+    {{ $searchresult->id->videoId}}
+  @endforeach
+</pre>
 Artist: {{ $artist }}
 Title: {{ $title }}
 

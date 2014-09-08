@@ -97,10 +97,33 @@ class SongsController extends Controller {
 		$apikey = "";
 		$request = "";
 
+		$DEVELOPER_KEY="AIzaSyA9KWQHrYK-ByJRqyR727BFkvY0LUnecG8";
+
+		$client = new Google_Client();
+		$client->setDeveloperKey($DEVELOPER_KEY);
+
+		$youtube = new Google_Service_YouTube($client);
+
+		try {
+			$response = $youtube->search->listSearch('id,snippet', array('q' => $artist . " - " . $title, 'maxResults' => 5,));
+
+			$videos = '';
+			$channels='';
+			$playlists='';
+		} catch (Google_ServiceException $e) {
+    	$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
+      	htmlspecialchars($e->getMessage()));
+  	} catch (Google_Exception $e) {
+    	$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
+     		htmlspecialchars($e->getMessage()));
+  	}
+
 		$artist = urlencode($artist);
 		$title = urlencode($title);
 
-		return View::make("youtube", array("artist" => $artist, "title" => $title));
+		$data = $response;
+
+		return View::make("youtube", array("artist" => $artist, "title" => $title, "data" => $data));
 	}
 
 	public static function getStatus($statusId)

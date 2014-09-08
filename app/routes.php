@@ -31,3 +31,6 @@ Route::get('songs/{artist}/{song}', function($artist = "", $song="")
 {
   return SongsController::searchYoutube($artist, $song);
 });
+
+Route::get('ajax/youtube', 'AjaxController@searchYoutube');
+Route::get('ajax/youtube/{results}', 'AjaxController@searchYoutube')->where(array('results' => '[0-9]*'));
