@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'rk6U0MjjmCmUXMCjZeICFF3iH2RWVaiU',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -122,6 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cornford\Bootstrapper\BootstrapServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
 
 	),
 

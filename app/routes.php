@@ -22,3 +22,7 @@ Route::get('users', function()
 
     return View::make('users')->with('users',$users);
   });
+
+Route::resource("Song", 'SongsController');
+
+Route::get('ajax/songs', 'AjaxController@songs');
