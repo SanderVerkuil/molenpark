@@ -39,6 +39,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{{ URL::to('') }}}">Home</a></li>
+            <li><a href="{{{ URL::to('song/create') }}}">Aanvragen</a></li>
           </ul>
         </div>
       </div>
