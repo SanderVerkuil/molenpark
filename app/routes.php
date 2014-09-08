@@ -23,6 +23,11 @@ Route::get('users', function()
     return View::make('users')->with('users',$users);
   });
 
-Route::resource("Song", 'SongsController');
+Route::resource("song", 'SongsController');
 
 Route::get('ajax/songs', 'AjaxController@songs');
+
+Route::get('songs/{artist}/{song}', function($artist = "", $song="")
+{
+  return SongsController::searchYoutube($artist, $song);
+});

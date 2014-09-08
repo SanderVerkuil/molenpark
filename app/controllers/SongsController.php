@@ -92,4 +92,15 @@ class SongsController extends Controller {
 		return Redirect::route('songs.index');
 	}
 
+	public static function searchYoutube($artist, $title)
+	{
+		$apikey = "";
+		$request = "";
+
+		$artist = urlencode($artist);
+		$title = urlencode($title);
+
+		return View::make("youtube", array("artist" => $artist, "title" => $title));
+	}
+
 }
