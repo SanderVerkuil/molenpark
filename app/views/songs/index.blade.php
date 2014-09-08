@@ -3,3 +3,4 @@
 @section('content')
      Index.blade.php
 @stop
+
