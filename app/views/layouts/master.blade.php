@@ -11,6 +11,7 @@
 
     <!-- CSS are placed here -->
     {{ Bootstrap::css() }}
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
     @if (isset($css))
       @if (is_array($css))
         @foreach ($css as $c)
@@ -40,7 +41,7 @@
   <body>
     <!-- Navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -56,6 +57,9 @@
           <ul class="nav navbar-nav">
             <li><a href="{{{ URL::to('') }}}">Home</a></li>
             <li><a href="{{{ URL::to('song/create') }}}">Aanvragen</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{{ URL::to('song') }}}">Overview</a></li>
           </ul>
         </div>
       </div>
@@ -73,6 +77,7 @@
     <!-- End of container -->
 
     <!-- Start external javascript files -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
     @if (isset($javascripts))
       @if (is_array($javascripts))
         @foreach ($javascripts as $js)

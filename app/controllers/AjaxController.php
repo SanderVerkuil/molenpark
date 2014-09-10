@@ -4,7 +4,7 @@ class AjaxController extends BaseController {
 
 	function songs()
 	{
-		return json_encode(Song::all());
+    return Response::json(array("data" => Song::all()));
 	}
 
   function searchYoutube($maxResults = 5)
@@ -30,7 +30,7 @@ class AjaxController extends BaseController {
         $items[] = array("videoId" => $item->id->videoId, "title" => $item->snippet->title, "description" => $item->snippet->description, "thumbnails" => array("default" => $item->snippet->thumbnails->default, "medium" => $item->snippet->thumbnails->medium, "high" => $item->snippet->thumbnails->high));
       }
 
-      return json_encode($items);
+      return Response::json($items);
     } catch (Google_ServiceException $e) {
       printf('<p>A service error occurred: <code>%s</code></p>',
         htmlspecialchars($e->getMessage()));

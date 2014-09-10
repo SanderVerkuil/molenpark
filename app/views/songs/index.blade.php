@@ -1,6 +1,7 @@
 @extends('layouts/master')
 
 @section('content')
+<div class="row">
   <form role="form" action="" method="get">
     <div class="col-sm-6">
       <div class="form-group">
@@ -24,5 +25,11 @@
       <button type="button" class="btn btn-primary btn-block">Zoeken</button>
     </div>
   </form>
+</div>
+<div class="row">
+  <table id="overview">
+    
+  </table>
+</div>
 @stop
 

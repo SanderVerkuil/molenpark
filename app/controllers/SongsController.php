@@ -11,9 +11,10 @@ class SongsController extends Controller {
 	 */
 	public function index()
 	{
-		$songs = Song::all();
+		$css = "overview";
+		$js = "overview";
 
-		return View::make('songs.index', compact('songs'));
+		return View::make('songs.index', array("css" => $css, "javascripts" => $js));
 	}
 
 	/**
