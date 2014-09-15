@@ -30,6 +30,9 @@
       .modal {
         overflow-y: auto;
       }
+      .help {
+        cursor: help;
+      }
     </style>
     @yield('styles')
 

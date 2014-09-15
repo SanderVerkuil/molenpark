@@ -1,13 +1,13 @@
 .sidebar {
   height: 100%;
+  height: calc(100% - 51px);
   position: absolute;
-  top: 0;
+  top: 51px;
   bottom: 0;
   right: 0;
-  padding: 51px 0 0 0;
+  padding: 0px 0 0 0;
   margin: 0;
   background-color: #353535;
-  margin: 0px;
   overflow: auto;
 }
 
@@ -17,23 +17,41 @@
   height: 54%;
 }
 
-#video-list {
-  width: 100%;
-  color: #BABABA;
-  margin: 0px;
-}
-
 .youtube-search {
   margin: 0;
   overflow: auto;
 }
 
-#video-list .selected {
+.search-hide {
+  display: none;
+}
+
+.info-text {
+  display: none;
+  text-align: center;
+  font-style: italic;
+  color: white;
+}
+
+#video-list {
+  position: relative;
+  width: 100%;
+  color: #BABABA;
+  margin: 0px;
+}
+
+#video-list tr:not(.selected):hover {
   background-color: #444;
+}
+
+#video-list .selected {
+  background-color: #aaa;
+  color: #fff;
 }
 
 .video-wrapper {
   position: relative;
+  display: none;
   padding-bottom: 56.25%;
   padding-top: 25px;
   height: 0;
@@ -48,6 +66,25 @@
   height: 100%;
 }
 
+.video-thumbnail {
+  width: 30%;
+  padding: 5px 0 5px 10px;
+  cursor: pointer;
+}
+
+.video-thumbnail img {
+  width: 100%;
+}
+
 .xs.video-title {
   padding: 5px;
+}
+
+.video-info {
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.btn-play {
+  margin: 5px 5px 5px 0;
 }
