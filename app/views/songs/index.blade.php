@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
   <form role="form" action="" method="get">
-    <div class="col-sm-6`">
+    <div class="col-sm-6">
       <div class="form-group">
         <label for="artiest">Artiest</label>
         <div class="input-group">
