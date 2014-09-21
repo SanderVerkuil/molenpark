@@ -1,0 +1,30 @@
+
+<tr>
+  <td class="status">
+    {{status}}
+  </td>
+  <td class="medium">
+    {{medium}}
+  </td>
+  <td class="artist">
+    {{artist}}
+  </td>
+  <td class="track">
+    {{track}}
+  </td>
+  <td class="album">
+    {{album}}
+  </td>
+  <td class="nr">
+    {{nr}}
+  </td>
+  <td class="tracks">
+    {{tracks}}
+  </td>
+  <td class="year">
+    {{year}}
+  </td>
+  <td class="ripdate">
+    {{ripdate}}
+  </td>
+</td>

@@ -121,9 +121,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Cornford\Bootstrapper\BootstrapServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+                'Cornford\Bootstrapper\BootstrapServiceProvider',
 
 	),
 
@@ -191,7 +191,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'Bootstrap'         => 'Cornford\Bootstrapper\Facades\Bootstrap',
+                'Bootstrap'         => 'Cornford\Bootstrapper\Facades\Bootstrap',
 
 	),
 
