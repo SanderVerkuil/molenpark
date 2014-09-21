@@ -27,9 +27,8 @@
   </form>
 </div>
 <div class="row">
-  <table id="overview">
-    
-  </table>
+  <span id="overview">
+  </span>
 </div>
 @stop
 
