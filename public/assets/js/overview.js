@@ -10,6 +10,7 @@ $(document).ready(function() {
     LoadPage();
     e.preventDefault();
   });
+  $(".song-search").change(LoadPage);
 })
 
 function LoadPage()

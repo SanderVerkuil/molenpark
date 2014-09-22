@@ -8,7 +8,7 @@
         <label for="artiest">Artiest</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-          <input type="text" name="artiest" id="artiest" placeholder="Artiest" class="form-control" />
+          <input type="text" name="artiest" id="artiest" placeholder="Artiest" class="form-control song-search" />
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
         <label for="title">Titel</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-music"></span></div>
-          <input type="text" name="titel" id="title" placeholder="Titel" class="form-control" />
+          <input type="text" name="titel" id="title" placeholder="Titel" class="form-control song-search" />
         </div>
       </div>
     </div>
