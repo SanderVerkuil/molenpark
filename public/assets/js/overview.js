@@ -1,4 +1,19 @@
 $(document).ready(function() {
+  $(window).hashchange(function(e) {
+    LoadPage();
+  })
+
+  LoadPage();
+
+  $("#search").submit(function(e) {
+    console.log("submitted");
+    LoadPage();
+    e.preventDefault();
+  });
+})
+
+function LoadPage()
+{
   var values, info = {};
 
   var array = location.hash.substr(1).split('&');
@@ -10,19 +25,20 @@ $(document).ready(function() {
     info[values[0]] = values[1];
   }
 
-  url = base_url + "ajax/songs?page=" + (info.page != undefined ? info.page :  '');
+  url = base_url + "ajax/songs/100?page=" + (info.page != undefined ? info.page :  '');
 
-  LoadPage();
-})
-
-function LoadPage()
-{
   $.ajax({
     url: url,
+    data: {
+      'artist': $("#artiest").val(),
+      'title': $("#title").val()
+    },
     complete: function(jqxhr) {
+      console.log(jqxhr);
       $('#overview').html(Render(jqxhr.responseJSON));
     },
-    dataType: "json"
+    dataType: "json",
+    cache: false
   })
 
 }
@@ -42,6 +58,8 @@ function Render(data)
 
   html = RenderLoops(data, html);
   html = RenderData(data, html);
+  html = Paginate(data, html);
+  html = RemoveUnmatched(html);
   return html;
 
 }
@@ -79,7 +97,6 @@ function RenderLoops(data, html)
                 to += markupMatch[1].replace(/{{\.}}/ig, v);
               break;
               default:
-                console.log(v);
                 var t = RenderLoops(v, markupMatch[1]);
                 to += RenderData(v, t);
             }
@@ -107,6 +124,69 @@ function RenderData(data, html)
     var patt = new RegExp("{{" + key + "}}", "g");
     html = html.replace(patt, value);
   })
+
+  return html;
+}
+
+function RemoveUnmatched(html)
+{
+  return html.replace(/{{(.)*}}/g, "");
+}
+
+function Paginate(data, html)
+{
+  console.log(data);
+
+  var currentPage = data.current_page;
+  var last_page = data.last_page;
+  var prevPage = currentPage-1;
+  if (prevPage <= 1)
+    prevPage = 1;
+  var nextPage = currentPage+1;
+  if (nextPage >= last_page)
+    nextPage = last_page;
+
+  var pageInfo = {
+    prevDisabled: false,
+    lastDisabled: false,
+    pages: {},
+    firstDisabled: false,
+    nextDisabled: false,
+    firstPage: 1,
+    lastPage: last_page,
+    prevPage: prevPage,
+    nextPage: nextPage
+  };
+
+  if (currentPage <= 1)
+  {
+    pageInfo.prevDisabled = true;
+    pageInfo.firstDisabled = true;
+  }
+
+  if (currentPage >= last_page)
+  {
+    pageInfo.nextDisabled = true;
+    pageInfo.lastDisabled = true;
+  }
+
+  start = 1;
+  end = last_page;
+
+  for (var i = start; i <= end; i+=1)
+  {
+    thisPage = i == currentPage;
+    pageInfo.pages[i] = {
+      isActive: thisPage,
+      active: function(a) {
+        return (a.isActive);
+      },
+      number: i
+    }
+  }
+
+  html = RenderLoops(pageInfo, html);
+  html = RenderData(pageInfo, html);
 
   return html;
 }

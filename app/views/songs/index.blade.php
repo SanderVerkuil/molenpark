@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-  <form role="form" action="" method="get">
+  <form role="form" method="get" id="search">
     <div class="col-sm-6">
       <div class="form-group">
         <label for="artiest">Artiest</label>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-sm-12">
-      <button type="button" class="btn btn-primary btn-block">Zoeken</button>
+      <button type="button" form="search" class="btn btn-primary btn-block">Zoeken</button>
     </div>
   </form>
 </div>

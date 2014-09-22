@@ -48,7 +48,7 @@
     {{album}}
   </td>
   <td class="nr">
-    {{nr}}
+    {{track}}
   </td>
   <td class="requester">
     {{requester}}
@@ -71,7 +71,18 @@
   </td>
 </tr>
 {{/data}}
-<tfoot>
-
-</tfoot>
 </table>
+
+<ul class='pagination'>
+
+<li {{#firstDisabled}} class='disabled'{{/firstDisabled}}><a href='#page={{firstPage}}'>&laquo;</a></li>
+<li {{#prevDisabled}} class='disabled'{{/prevDisabled}}><a href='#page={{prevPage}}'>&lsaquo;</a></li>
+
+{{#pages}}
+  <li {{#active}} class='active'{{/active}}><a href="#page={{number}}">{{number}}</a></li>
+{{/pages}}
+
+<li{{#nextDisabled}} class='disabled'{{/nextDisabled}}><a href="#page={{nextPage}}">&rsaquo;</a></li>
+<li{{#lastDisabled}} class='disabled'{{/lastDisabled}}><a href="#page={{lastPage}}">&raquo;</a></li>
+
+</ul>
