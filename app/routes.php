@@ -26,6 +26,7 @@ Route::get('users', function()
 Route::resource("song", 'SongsController');
 
 Route::get('ajax/songs', 'AjaxController@songs');
+Route::get('ajax/songs/{perPage}', 'AjaxController@songs')->where(array('perPage' => '[0-9]*'));
 
 Route::get('songs/{artist}/{song}', function($artist = "", $song="")
 {

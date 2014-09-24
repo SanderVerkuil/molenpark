@@ -2,9 +2,16 @@
 
 class AjaxController extends BaseController {
 
-	function songs()
+	function songs($perPage = 5)
 	{
-    return Response::json(array("data" => Song::all()));
+
+    $artist = Input::get("artist");
+    $title = Input::get("title");
+
+    $data = Song::where('artist', 'LIKE', "%$artist%")->
+                  where('title',  'LIKE', "%$title%", 'AND')->paginate($perPage);
+
+    return Response::json($data);
 	}
 
   function searchYoutube($maxResults = 5)

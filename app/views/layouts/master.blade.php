@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript">
+    base_url = "{{ URL::to('/')}}/";
+    </script>
     <title>
       @section('title')
       Dixocie
