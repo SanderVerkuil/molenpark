@@ -10,7 +10,7 @@ $(document).ready(function() {
     LoadPage();
     e.preventDefault();
   });
-  $(".song-search").change(LoadPage);
+  $(".song-search").keyUp(LoadPage);
 })
 
 function LoadPage()
