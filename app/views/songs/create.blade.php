@@ -5,12 +5,29 @@
     <div class="col-sm-6 youtube-search">
       <form id="song-form" role="form" method="post">
 
+        {{-- Search --}}
+        <div class="form-group">
+          <label for="song-search">Zoeken</label>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+            <input type="text" name="search" id="song-search" class="song-info form-control" placeholder = "bijv. Rick Astley - Never gonna give you up" />
+          </div>
+        </div>
+
+        {{-- Spotify Results --}}
+        <div class="form-group">
+          <label for="#">Spotify</label>
+          <div class="spotify-search-results">
+            The results will be here
+          </div>
+        </div>
+
         {{-- Artist --}}
         <div class="form-group">
           <label for="song-artist">Artiest</label>
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-            <input type="text" name="artist" id="song-artist" class="song-info form-control" placeholder="bijv. Rick Astley">
+            <input type="text" name="artist" id="song-artist" class="song-info form-control" disabled placeholder="bijv. Rick Astley">
           </div>
         </div>
 
@@ -19,7 +36,7 @@
           <label for="song-title">Titel</label>
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-music"></span></div>
-            <input type="text" name="title" id="song-title" class="song-info form-control" placeholder="bijv. Never Gonna Give You Up">
+            <input type="text" name="title" id="song-title" class="song-info form-control" disabled placeholder="bijv. Never Gonna Give You Up">
           </div>
         </div>
 

@@ -11,7 +11,7 @@ class SongsController extends Controller {
 	 */
 	public function index()
 	{
-		$js = array('jquery.hashchange.min','overview');
+		$js = array('jquery.hashchange.min', 'renderer' ,'overview');
 		$css = "overview";
 
 		return View::make('songs.index', array("css" => $css, "javascripts" => $js));

@@ -1,16 +1,14 @@
 /* Functions */
 function updateVideos() {
+  console.log("Updating videos");
   var artist = $('#song-artist').val(),
-      title = $('#song-title').val();
+      title = $('#song-title').val(),
+      query = $("#song-search").val();
 
-  // Don't accept empty artist or title
-  if (artist == "" || title == "") {
-    return false;
-  }
-
+  console.log(query);
   // AJAX request to fetch video results
   $.ajax('/ajax/youtube', {
-    data: {a:artist, t:title},
+    data: {q:query},
     dataType: "json",
     success: function(result) {
       // Clear video preview
@@ -25,7 +23,7 @@ function updateVideos() {
       // Display video results
       $.each(result, function(i, vid) {
         var firstclass = "",
-            reg = new RegExp("("+artist+"|"+title+")","ig");
+            reg = new RegExp("("+query+")","ig");
 
         if (i == 0) {
           firstclass = " first";
@@ -40,11 +38,23 @@ function updateVideos() {
       });
     }
   });
+
+  $.ajax("https://api.spotify.com/v1/search", {
+    data: {
+      q: query,
+      type: "track"
+    },
+    dataType: "json",
+    success: function(data) {
+      console.log(data);
+    },
+  })
 }
 
 function updateSongs() {
   var artist = $('#song-artist').val(),
-      title = $('#song-title').val();
+      title = $('#song-title').val(),
+      query = $("#song-search").val();
 
   // Don't accept empty artist or title
   if (artist == "" || title == "") {
@@ -53,7 +63,7 @@ function updateSongs() {
 
   // AJAX request to search in database
   $.ajax('/ajax/songs', {
-    data: {a:artist, t:title},
+    data: {q:query},
     dataType: "json",
     success: function(result) {
       // WIP

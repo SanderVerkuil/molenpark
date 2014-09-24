@@ -18,18 +18,21 @@ class AjaxController extends BaseController {
   {
     $artist = "";
     $title = "";
+    $query = "";
    
     if (Input::has("a"))
       $artist = Input::get('a');
     if (Input::has("t"))
       $title = Input::get("t");
+    if (Input::has("q"))
+      $query = Input::get("q");
 
     $client = new Google_Client();
     $client->setDeveloperKey("AIzaSyA9KWQHrYK-ByJRqyR727BFkvY0LUnecG8");
 
     $youtube = new Google_Service_YouTube($client);
     try {
-      $response = $youtube->search->listSearch("id,snippet", array("q" => $title . "  - " . $artist, "maxResults" => $maxResults));
+      $response = $youtube->search->listSearch("id,snippet", array("q" => $query, "maxResults" => $maxResults));
 
       $items = array();
 
