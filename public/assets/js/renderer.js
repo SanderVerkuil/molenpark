@@ -175,5 +175,5 @@ var Renderer = function()
 
     return html;
   }
-
+  return exports;
 }

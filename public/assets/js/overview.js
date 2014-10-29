@@ -1,5 +1,7 @@
 var renderer = new Renderer();
 
+console.log(renderer);
+
 $(document).ready(function() {
 
 
@@ -14,7 +16,7 @@ $(document).ready(function() {
     LoadPage();
     e.preventDefault();
   });
-  $(".song-search").keyUp(LoadPage);
+  $(".song-search").keyup(LoadPage);
 })
 
 function LoadPage()

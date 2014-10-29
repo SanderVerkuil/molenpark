@@ -1,88 +1,90 @@
-<table class='table-striped table table-bordered table-hover'>
-<thead>
-<tr>
-  <th colspan='9' class='meta'>
-  Nummer {{from}} tot en met {{to}}. Pagina {{current_page}} van de {{last_page}}
-  </th>
-</tr>
-<tr>
-  <th class="status">
-    Status
-  </th>
-  <th class="artist">
-    Artiest
-  </th>
-  <th class="track">
-    Track
-  </th>
-  <th class="album">
-    Album
-  </th>
-  <th class="nr">
-    Tracknummer
-  </th>
-  <th>
-    Aanvrager
-  </th>
-  <th>
-    Aangevraagd op
-  </th>
-  <th>
-    Laaste update
-  </th>
-  <th>YouTube</th>
-</tr>
-</thead>
-{{#data}}
-<tr>
-  <td class="status">
-    {{status}}
-  </td>
-  <td class="artist">
-    {{artist}}
-  </td>
-  <td class="track">
-    {{title}}
-  </td>
-  <td class="album">
-    {{album}}
-  </td>
-  <td class="nr">
-    {{track}}
-  </td>
-  <td class="requester">
-    {{requester}}
-  </td>
-  <td class="requested">
-    {{created_at}}
-  </td>
-  <td class="lastUpdate">
-    {{updated_at}}
-  </td>
-  <td class="youtube">
-  <a href="http://youtu.be/{{youtube_key}}"><span class="glyphicon glyphicon-play"></span></a>
-  </td>
-</tr>
-{{/data}}
-{{^data}}
-<tr>
-  <td colspan='9' class='nonefound'>
-    Er zijn nog geen nummers gevonden
-  </td>
-</tr>
-{{/data}}
-</table>
+<div class="container-fluid">
+  <table class='table-striped table table-bordered table-hover'>
+  <thead>
+  <tr>
+    <th colspan='9' class='meta'>
+    Nummer {{from}} tot en met {{to}}. Pagina {{current_page}} van de {{last_page}}
+    </th>
+  </tr>
+  <tr>
+    <th class="status hidden-xs hidden-sm">
+      Status
+    </th>
+    <th class="artist">
+      Artiest
+    </th>
+    <th class="track">
+      Track
+    </th>
+    <th class="album hidden-xs hidden-sm">
+      Album
+    </th>
+    <th class="nr hidden-xs hidden-sm">
+      Tracknummer
+    </th>
+    <th class="hidden-xs hidden-sm">
+      Aanvrager
+    </th>
+    <th class="hidden-xs hidden-sm">
+      Aangevraagd op
+    </th>
+    <th class="hidden-xs hidden-sm">
+      Laaste update
+    </th>
+    <th class="hidden-xs hidden-sm">YouTube</th>
+  </tr>
+  </thead>
+  {{#data}}
+  <tr>
+    <td class="status hidden-xs hidden-sm">
+      {{status}}
+    </td>
+    <td class="artist">
+      {{artist}}
+    </td>
+    <td class="track">
+      {{title}}
+    </td>
+    <td class="album hidden-xs hidden-sm">
+      {{album}}
+    </td>
+    <td class="nr hidden-xs hidden-sm">
+      {{track}}
+    </td>
+    <td class="requester hidden-xs hidden-sm">
+      {{requester}}
+    </td>
+    <td class="requested hidden-xs hidden-sm">
+      {{created_at}}
+    </td>
+    <td class="lastUpdate hidden-xs hidden-sm">
+      {{updated_at}}
+    </td>
+    <td class="youtube hidden-xs hidden-sm">
+    <a href="http://youtu.be/{{youtube_key}}"><span class="glyphicon glyphicon-play"></span></a>
+    </td>
+  </tr>
+  {{/data}}
+  {{^data}}
+  <tr>
+    <td colspan='9' class='nonefound'>
+      Er zijn nog geen nummers gevonden
+    </td>
+  </tr>
+  {{/data}}
+  </table>
 
-<ul class='pagination'>
+  <ul class='pagination'>
 
-<li {{#firstDisabled}} class='disabled'{{/firstDisabled}}><a href='#page={{firstPage}}'>&laquo;</a></li>
-<li {{#prevDisabled}} class='disabled'{{/prevDisabled}}><a href='#page={{prevPage}}'>&lsaquo;</a></li>
+  <li {{#firstDisabled}} class='disabled'{{/firstDisabled}}><a href='#page={{firstPage}}'>&laquo;</a></li>
+  <li {{#prevDisabled}} class='disabled'{{/prevDisabled}}><a href='#page={{prevPage}}'>&lsaquo;</a></li>
 
-{{#pages}}
-  <li {{#active}} class='active'{{/active}}><a href="#page={{number}}">{{number}}</a></li>
-{{/pages}}
+  {{#pages}}
+    <li {{#active}} class='active'{{/active}}><a href="#page={{number}}">{{number}}</a></li>
+  {{/pages}}
 
-<li{{#nextDisabled}} class='disabled'{{/nextDisabled}}><a href="#page={{nextPage}}">&rsaquo;</a></li>
-<li{{#lastDisabled}} class='disabled'{{/lastDisabled}}><a href="#page={{lastPage}}">&raquo;</a></li>
+  <li{{#nextDisabled}} class='disabled'{{/nextDisabled}}><a href="#page={{nextPage}}">&rsaquo;</a></li>
+  <li{{#lastDisabled}} class='disabled'{{/lastDisabled}}><a href="#page={{lastPage}}">&raquo;</a></li>
 
-</ul>
+  </ul>
+</div>
