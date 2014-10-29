@@ -14,14 +14,6 @@
           </div>
         </div>
 
-        {{-- Spotify Results --}}
-        <div class="form-group">
-          <label for="#">Spotify</label>
-          <div class="spotify-search-results">
-            The results will be here
-          </div>
-        </div>
-
         {{-- Artist --}}
         <div class="form-group">
           <label for="song-artist">Artiest</label>
@@ -64,18 +56,66 @@
       </form>
     </div>
 
-    {{-- Video Sidebar --}}
-    <div id="video-finder" class="col-sm-6 hidden-xs sidebar">
-      <div class="video-wrapper"><iframe id="video-preview" src=""></iframe></div>
-      <h4 class="info-text search-video">Voer artiest en titel in om te zoeken op YouTube</h4>
-      <h4 class="info-text select-video">Selecteer een video voor de luisterlink</h4>
-      <div class="scroll-container">
-        <table id="video-list">
-        </table>
-        <table id="song-list">
-          <!-- Song results from DB will go in here -->
-        </table>
+    {{-- Tabs --}}
+    <div id="tab-container" class="col-sm-6 hidden-xs">
+      {{-- Tab navigation --}}
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#youtube" role="tab" data-toggle="tab">YouTube</a></li>
+        <li><a href="#spotify" role="tab" data-toggle="tab">Spotify</a></li>
+        <li><a href="#soundcloud" role="tab" data-toggle="tab">SoundCloud</a></li>
+      </ul>
+
+      {{-- Tab panels --}}
+      <div class="tab-content">
+        <div class="tab-pane active" id="youtube">
+
+          {{-- YouTube --}}
+          <div class="video-wrapper"><iframe id="video-preview" src=""></iframe></div>
+          <h4 class="info-text search-video">Voer artiest en titel in om te zoeken op YouTube</h4>
+          <h4 class="info-text select-video">Selecteer een video voor de luisterlink</h4>
+          <div class="scroll-container">
+            <table id="video-list">
+            </table>
+            <table id="song-list">
+              <!-- Song results from DB will go in here -->
+            </table>
+          </div>
+          {{-- /YouTube --}}
+
+        </div>
+        <div class="tab-pane" id="spotify">
+
+          {{-- Spotify --}}
+          <table class="table-striped table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>
+                  Artiest
+                </th>
+                <th>
+                  Title
+                </th>
+                <th>
+                  Album
+                </th>
+                <th>
+                  Listen
+                </th>
+              </tr>
+            </thead>
+            <tbody id="spotify-results">
+              <!-- Results of spotify -->
+            </tbody>
+          </table>
+
+        </div>
+        <div class="tab-pane" id="soundcloud">
+          {{-- Soundcloud --}}
+
+
+        </div>
       </div>
+    {{-- Video Sidebar --}}
     </div>
   </div>
 @stop

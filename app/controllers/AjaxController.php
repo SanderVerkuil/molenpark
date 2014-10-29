@@ -9,7 +9,7 @@ class AjaxController extends BaseController {
     $title = Input::get("title");
 
     $data = Song::where('artist', 'LIKE', "%$artist%")->
-                  where('title',  'LIKE', "%$title%", 'AND')->paginate($perPage);
+                  where('title',  'LIKE', "%$title%", 'AND')->orderBy('updated_at', 'DESC')->paginate($perPage);
 
     return Response::json($data);
 	}

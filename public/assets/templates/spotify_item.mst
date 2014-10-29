@@ -1,0 +1,21 @@
+{{#tracks}}
+  {{#items}}
+    <tr>
+      <td>
+        {{#artists}}
+          {{name}}
+        {{/artists}}
+      </td>
+      <td>
+        {{name}}
+      <td>
+        {{#album}}
+          
+        {{/album}}
+      </td>
+      <td>
+        <iframe src="https://embed.spotify.com/?uri={{uri}}" width="380" height="80" frameborder="0" allowtransparency="true"></iframe>
+      </td>
+    </tr>
+  {{/items}}
+{{/tracks}}

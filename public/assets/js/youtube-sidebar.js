@@ -1,3 +1,5 @@
+var renderer = new Renderer();
+
 /* Functions */
 function updateVideos() {
   console.log("Updating videos");
@@ -42,11 +44,20 @@ function updateVideos() {
   $.ajax("https://api.spotify.com/v1/search", {
     data: {
       q: query,
-      type: "track"
+      type: "track",
+      limit: 1,
     },
     dataType: "json",
     success: function(data) {
+      var options = {
+        renderingContext: $("#spotify-results"),
+        templateUrl: base_url + "assets/templates/spotify_item.mst",
+        data: data.tracks,
+        append: false,
+        removeUnmatched: true
+      }
       console.log(data);
+      renderer.render(options);
     },
   })
 }

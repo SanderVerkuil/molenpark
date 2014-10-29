@@ -3,18 +3,21 @@ var Renderer = function()
   var exports = {};
 
   var options = {
-    renderContext: $("body"),
+    renderingContext: $("body"),
     loadingContext: $("body"),
     templateUrl: undefined,
     data: undefined,
     complete: function(output, context) {},
     append: true,
-    removeUnmatched: false
+    removeUnmatched: false,
+    paginate: false
   }
 
   function Render(opts)
   {
     $.extend(options, opts);
+
+    options.renderingContext.html('');
 
     if (options.templateUrl == undefined)
       throw "Template can't be undefined";
@@ -22,6 +25,8 @@ var Renderer = function()
       throw "Data can't be undefined";
 
     var html;
+
+    console.log(options);
     $.ajax({
       url: options.templateUrl,
       success: function(data)
@@ -34,9 +39,15 @@ var Renderer = function()
 
     var data = options.data;
 
+    console.log("Hai");
     html = RenderLoops(data, html);
+
+    console.log("Hai");
+
     html = RenderData(data, html);
-    html = Paginate(data, html);
+
+    if (options.paginate)
+      html = Paginate(data, html);
 
     if (options.removeUnmatched)
       html = RemoveUnmatched(html);
@@ -60,8 +71,10 @@ var Renderer = function()
       var markupOutput = "";
       var hiddenOutput = "";
 
+
       if (markupMatch != null)
       {
+        console.log(markupMatch);
         switch(typeof value)
         {
           case "boolean":
@@ -78,12 +91,17 @@ var Renderer = function()
             {
               switch(typeof v)
               {
-                case "String":
+                case "string":
                   to += markupMatch[1].replace(/{{\.}}/ig, v);
                 break;
                 default:
-                  var t = RenderLoops(v, markupMatch[1]);
-                  to += RenderData(v, t);
+                  if (v != null)
+                  {
+                    var t = RenderLoops(v, markupMatch[1]);
+                    to += RenderData(v, t);
+                  } else {
+                    to += "";
+                  }
               }
             });
 
@@ -120,8 +138,6 @@ var Renderer = function()
 
   function Paginate(data, html)
   {
-    console.log(data);
-
     var currentPage = data.current_page;
     var last_page = data.last_page;
     var prevPage = currentPage-1;
@@ -169,6 +185,8 @@ var Renderer = function()
         number: i
       }
     }
+
+    pageInfo.hasPages = data.last_page > 1;
 
     html = RenderLoops(pageInfo, html);
     html = RenderData(pageInfo, html);

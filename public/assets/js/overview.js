@@ -1,7 +1,5 @@
 var renderer = new Renderer();
 
-console.log(renderer);
-
 $(document).ready(function() {
 
 
@@ -32,7 +30,7 @@ function LoadPage()
     info[values[0]] = values[1];
   }
 
-  url = base_url + "ajax/songs/100?page=" + (info.page != undefined ? info.page :  '');
+  url = base_url + "ajax/songs/25?page=" + (info.page != undefined ? info.page :  '');
 
   $.ajax({
     url: url,
@@ -41,11 +39,11 @@ function LoadPage()
       'title': $("#title").val()
     },
     complete: function(jqxhr) {
-      console.log(jqxhr);
       renderer.render({
         renderingContext: $('#overview'),
         templateUrl: "assets/templates/overview.mst",
-        data: jqxhr.responseJSON
+        data: jqxhr.responseJSON,
+        paginate: true
       });
     },
     dataType: "json",
