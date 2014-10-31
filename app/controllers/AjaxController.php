@@ -11,8 +11,6 @@ class AjaxController extends BaseController {
     $data = Song::where('artist', 'LIKE', "%$artist%")->
                   where('title',  'LIKE', "%$title%", 'AND')->orderBy('updated_at', 'DESC')->paginate($perPage);
 
-    Debugbar::info($data);
-
     return Response::json($data);
 	}
 
