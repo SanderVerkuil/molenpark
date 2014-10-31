@@ -83,7 +83,6 @@
     <!-- End of container -->
 
     <!-- Start external javascript files -->
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
     @if (isset($javascripts))
       @if (is_array($javascripts))
         @foreach ($javascripts as $js)

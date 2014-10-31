@@ -59,7 +59,7 @@
     {{-- Tabs --}}
     <div id="tab-container" class="col-sm-6 hidden-xs">
       {{-- Tab navigation --}}
-      <ul class="nav nav-tabs" role="tablist">
+      <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="active"><a href="#youtube" role="tab" data-toggle="tab">YouTube</a></li>
         <li><a href="#spotify" role="tab" data-toggle="tab">Spotify</a></li>
         <li><a href="#soundcloud" role="tab" data-toggle="tab">SoundCloud</a></li>

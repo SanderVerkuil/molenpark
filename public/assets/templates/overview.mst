@@ -1,4 +1,3 @@
-<div class="container-fluid">
   <table class='table-striped table table-bordered table-hover'>
   <thead>
   <tr>
@@ -88,4 +87,3 @@
   <li{{#lastDisabled}} class='disabled'{{/lastDisabled}}><a href="#page={{lastPage}}">&raquo;</a></li>
   {{/hasPages}}
   </ul>
-</div>
