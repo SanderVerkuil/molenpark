@@ -40,7 +40,6 @@
     @yield('styles')
 
     <!-- Scripts are placed here -->
-    {{ Bootstrap::js() }}
     <!-- End JS -->
   </head>
 
@@ -83,6 +82,7 @@
     <!-- End of container -->
 
     <!-- Start external javascript files -->
+    {{ Bootstrap::js() }}
     @if (isset($javascripts))
       @if (is_array($javascripts))
         @foreach ($javascripts as $js)
