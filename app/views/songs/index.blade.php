@@ -32,7 +32,7 @@
     </form>
   </div>
 </div>
-<div class="row" style="margin-top: 20px">
+<div class="row" style="margin-top: 10px">
   <div class="col-sm-12">
     <div id="overview">
     </div>
