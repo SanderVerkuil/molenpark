@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover">
+  {{#results}}
+  <tr data-id="{{videoId}}">
+    <td class="video-thumbnail hidden-sm">
+      {{#thumbnails}}
+        {{#medium}}
+          <img src="{{url}}" />
+        {{/medium}}
+      {{/thumbnails}}
+    </td>
+    <td class="video-info">
+      <span class="video-title">{{title}}</span>
+    </td>
+    <td>
+      <button class="btn btn-danger btn-play">
+        <i class="glyphicon glyphicon-play"></i>
+      </button>
+    </td>
+  </tr>
+  {{/results}}
+</table>

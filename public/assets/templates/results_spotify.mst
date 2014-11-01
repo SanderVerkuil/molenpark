@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Artiest
+      </th>
+      <th>
+        Name
+      </th>
+      <th class="preview">
+        Listen
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#tracks}}
+      {{#items}}
+        <tr>
+          <td>
+            {{#artists}}
+              {{name}}
+            {{/artists}}
+          </td>
+          <td>
+            <a href="https://play.spotify.com/track/{{id}}" target="_blank" title="Open {{name}} in Spotify">{{name}}</a>
+          </td>
+          <td class="preview">
+            <audio controls>
+              <source src="{{preview_url}}" type="audio/mpeg">
+              Your browser does not support the audio tag
+            </audio>
+          </td>
+        </tr>
+      {{/items}}
+    {{/tracks}}
+  </tbody>
+</table>

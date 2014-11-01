@@ -26,7 +26,6 @@ var Renderer = function()
 
     var html;
 
-    console.log(options);
     $.ajax({
       url: options.templateUrl,
       success: function(data)
@@ -39,10 +38,7 @@ var Renderer = function()
 
     var data = options.data;
 
-    console.log("Hai");
     html = RenderLoops(data, html);
-
-    console.log("Hai");
 
     html = RenderData(data, html);
 
@@ -74,7 +70,6 @@ var Renderer = function()
 
       if (markupMatch != null)
       {
-        console.log(markupMatch);
         switch(typeof value)
         {
           case "boolean":
@@ -92,7 +87,7 @@ var Renderer = function()
               switch(typeof v)
               {
                 case "string":
-                  to += markupMatch[1].replace(/{{\.}}/ig, v);
+                  to = markupMatch[1].replace(/{{\.}}/ig, v);
                 break;
                 default:
                   if (v != null)

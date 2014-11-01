@@ -2,12 +2,10 @@ var renderer = new Renderer();
 
 /* Functions */
 function updateVideos() {
-  console.log("Updating videos");
   var artist = $('#song-artist').val(),
-      title = $('#song-title').val(),
-      query = $("#song-search").val();
+  title = $('#song-title').val(),
+  query = $("#song-search").val();
 
-  console.log(query);
   // AJAX request to fetch video results
   $.ajax('/ajax/youtube', {
     data: {q:query},
@@ -24,48 +22,51 @@ function updateVideos() {
 
       // Display video results
       $.each(result, function(i, vid) {
-        var firstclass = "",
-            reg = new RegExp("("+query+")","ig");
+        if (vid.videoId != null)
+        {
+          var firstclass = "",
+          reg = new RegExp("("+query+")","ig");
 
-        if (i == 0) {
-          firstclass = " first";
+          if (i == 0) {
+            firstclass = " first";
+          }
+
+          // Highlight search words using regex
+          vid.title = vid.title.replace(reg, "<strong>$1</strong>");
+
+          // This can be done easier, right?
+          $('#video-list').append('<tr class="video-result'+firstclass+'" data-id="'+vid.videoId+'"><td class="video-thumbnail hidden-sm">'+responsiveThumbnail(vid.thumbnails)+'</td><td class="video-info"><span class="video-title">'+vid.title+'</span></td><td><button class="btn btn-danger btn-play"><i class="glyphicon glyphicon-play"></i></button></td></tr>'
+            );
         }
-
-        // Highlight search words using regex
-        vid.title = vid.title.replace(reg, "<strong>$1</strong>");
-
-        // This can be done easier, right?
-        $('#video-list').append('<tr class="video-result'+firstclass+'" data-id="'+vid.videoId+'"><td class="video-thumbnail hidden-sm">'+responsiveThumbnail(vid.thumbnails)+'</td><td class="video-info"><span class="video-title">'+vid.title+'</span></td><td><button class="btn btn-danger btn-play"><i class="glyphicon glyphicon-play"></i></button></td></tr>'
-        );
       });
     }
   });
 
-  $.ajax("https://api.spotify.com/v1/search", {
-    data: {
-      q: query,
-      type: "track",
-      limit: 1,
-    },
-    dataType: "json",
-    success: function(data) {
-      var options = {
-        renderingContext: $("#spotify-results"),
-        templateUrl: base_url + "assets/templates/spotify_item.mst",
-        data: data.tracks,
-        append: false,
-        removeUnmatched: true
-      }
-      console.log(data);
-      renderer.render(options);
-    },
-  })
+$.ajax("https://api.spotify.com/v1/search", {
+  data: {
+    q: query,
+    type: "track",
+    limit: 10,
+  },
+  dataType: "json",
+  success: function(data) {
+    console.log(data);
+    var options = {
+      renderingContext: $("#spotify"),
+      templateUrl: base_url + "assets/templates/results_spotify.mst",
+      data: data.tracks,
+      append: false,
+      removeUnmatched: true
+    }
+    renderer.render(options);
+  },
+})
 }
 
 function updateSongs() {
   var artist = $('#song-artist').val(),
-      title = $('#song-title').val(),
-      query = $("#song-search").val();
+  title = $('#song-title').val(),
+  query = $("#song-search").val();
 
   // Don't accept empty artist or title
   if (artist == "" || title == "") {
@@ -78,7 +79,7 @@ function updateSongs() {
     dataType: "json",
     success: function(result) {
       // WIP
-      console.log(result);
+
     }
   });
 }
@@ -110,6 +111,7 @@ $(document).ready(function(){
   // Help text popovers
   $('.help').popover();
 
+  $()
   // Show youtube search text
   $('.info-text.search-video').show();
 
@@ -117,7 +119,7 @@ $(document).ready(function(){
   $('#video-list').on("click", '.btn-play', function(e){
     // Get ID and make a youtube url
     var videoId = $(this).parents(".video-result").data("id"),
-        ytUrl = "http://www.youtube.com/v?v="+videoId+"&autoplay=1";
+    ytUrl = "http://www.youtube.com/v?v="+videoId+"&autoplay=1";
 
     // Set source in preview iframe and show it
     $('#video-preview').attr("src",ytUrl);

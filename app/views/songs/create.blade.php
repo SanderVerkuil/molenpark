@@ -71,43 +71,20 @@
 
           {{-- YouTube --}}
           <div class="video-wrapper"><iframe id="video-preview" src=""></iframe></div>
-          <h4 class="info-text search-video">Voer artiest en titel in om te zoeken op YouTube</h4>
-          <h4 class="info-text select-video">Selecteer een video voor de luisterlink</h4>
+          <div class="well well-lg info-text search-video"><h4>Begin links met zoeken</h4></div>
+          <div class="well well-lg info-text select-video"><h4>Selecteer een video voor de luisterlink</h4></div>
           <div class="scroll-container">
-            <table id="video-list">
-            </table>
-            <table id="song-list">
-              <!-- Song results from DB will go in here -->
+            <table id="video-list" class="table">
+
             </table>
           </div>
           {{-- /YouTube --}}
 
         </div>
         <div class="tab-pane" id="spotify">
-
-          {{-- Spotify --}}
-          <table class="table-striped table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>
-                  Artiest
-                </th>
-                <th>
-                  Title
-                </th>
-                <th>
-                  Album
-                </th>
-                <th>
-                  Listen
-                </th>
-              </tr>
-            </thead>
-            <tbody id="spotify-results">
-              <!-- Results of spotify -->
-            </tbody>
-          </table>
-
+        <div class='well well-lg'>
+          <h4>Begin links met zoeken</h4>
+        </div>
         </div>
         <div class="tab-pane" id="soundcloud">
           {{-- Soundcloud --}}
