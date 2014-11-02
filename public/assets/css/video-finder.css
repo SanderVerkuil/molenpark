@@ -123,33 +123,59 @@
   width: 100%;
 }
 
-#spotify .table {
+#tab-container .table {
   color: #FEFEFE;
 }
 
-#spotify .table tr:nth-child(even) {
+#tab-container .table tr td{
+  border-color: #777;
+}
+
+#tab-container .table tr:nth-child(even) {
   background-color: #404040;
 }
 
-#spotify .table tr:nth-child(odd) {
+#tab-container .table tr:nth-child(odd) {
+  background-color: #484848;
+}
+
+#tab-container .table th{
   background-color: #4F4F4F;
 }
 
-#spotify .table th{
-  background-color: #5F5F5F;
-}
-
-#spotify .table a {
+#tab-container .table a {
   color: #FFBF00;
 }
 
 #spotify .preview {
 }
 
-#spotify .glyphicon-spotify {
+.glyphicon-spotify {
   width: 24px;
   height: 24px;
   background-image: url(../img/spotify-black-128.png);
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.btn-spotify {
+  background-color: #81b71a;
+  padding: 2px;
+  width: 100%;
+}
+
+.btn-spotify:hover .glyphicon-spotify{
+  background-image: url(../img/spotify-white-128.png);
+}
+
+.btn-spotify:hover {
+  background-color: #32B71A;
+}
+
+#tab-container .table tr:hover {
+  background-color: #555;
+}
+
+#tab-container .table td {
+  vertical-align: middle;
 }

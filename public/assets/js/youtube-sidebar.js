@@ -7,7 +7,7 @@ function updateVideos() {
   query = $("#song-search").val();
 
   // AJAX request to fetch video results
-  $.ajax('/ajax/youtube', {
+  $.ajax(base_url + '/ajax/youtube', {
     data: {q:query},
     dataType: "json",
     success: function(result) {
@@ -42,11 +42,9 @@ function updateVideos() {
     }
   });
 
-$.ajax("https://api.spotify.com/v1/search", {
+$.ajax(base_url + "/ajax/spotify/10", {
   data: {
-    q: query,
-    type: "track",
-    limit: 10,
+    q: query
   },
   dataType: "json",
   success: function(data) {
@@ -54,7 +52,7 @@ $.ajax("https://api.spotify.com/v1/search", {
     var options = {
       renderingContext: $("#spotify"),
       templateUrl: base_url + "assets/templates/results_spotify.mst",
-      data: data.tracks,
+      data: data,
       append: false,
       removeUnmatched: true,
       complete: function(output, context) {

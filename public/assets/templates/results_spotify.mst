@@ -7,7 +7,10 @@
         Artiest
       </th>
       <th>
-        Name
+        Naam
+      </th>
+      <th>
+        Album
       </th>
       <th class="preview">
         Listen
@@ -19,12 +22,13 @@
       {{#items}}
         <tr class="spotify-result" data-id="{{uri}}">
           <td>
-            {{#artists}}
-              {{name}}
-            {{/artists}}
+            {{artists}}
           </td>
           <td>
-            <a href="https://play.spotify.com/track/{{id}}" target="_blank" title="Open {{name}} in Spotify">{{name}}</a>
+            <a href="https://play.spotify.com/track/{{id}}" target="_blank" title="Open '{{name}}' in Spotify">{{name}}</a>
+          </td>
+          <td>
+            {{album}}
           </td>
           <td class="preview">
             <button class="btn btn-spotify"><i class="glyphicon glyphicon-spotify"></i></button>

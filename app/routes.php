@@ -35,3 +35,6 @@ Route::get('songs/{artist}/{song}', function($artist = "", $song="")
 
 Route::get('ajax/youtube', 'AjaxController@searchYoutube');
 Route::get('ajax/youtube/{results}', 'AjaxController@searchYoutube')->where(array('results' => '[0-9]*'));
+
+Route::get('ajax/spotify', 'AjaxController@searchSpotify');
+Route::get('ajax/spotify/{results}', 'AjaxController@searchSpotify')->where(array('results' => '[0-9]*'));
