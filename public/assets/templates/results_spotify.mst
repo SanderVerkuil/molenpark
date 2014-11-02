@@ -1,3 +1,5 @@
+<iframe class='preview-frame' src="about:blank" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>
+
 <table class="table">
   <thead>
     <tr>
@@ -15,7 +17,7 @@
   <tbody>
     {{#tracks}}
       {{#items}}
-        <tr>
+        <tr class="spotify-result" data-id="{{uri}}">
           <td>
             {{#artists}}
               {{name}}
@@ -25,10 +27,7 @@
             <a href="https://play.spotify.com/track/{{id}}" target="_blank" title="Open {{name}} in Spotify">{{name}}</a>
           </td>
           <td class="preview">
-            <audio controls>
-              <source src="{{preview_url}}" type="audio/mpeg">
-              Your browser does not support the audio tag
-            </audio>
+            <button class="btn btn-spotify"><i class="glyphicon glyphicon-spotify"></i></button>
           </td>
         </tr>
       {{/items}}

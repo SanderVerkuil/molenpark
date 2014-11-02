@@ -56,7 +56,16 @@ $.ajax("https://api.spotify.com/v1/search", {
       templateUrl: base_url + "assets/templates/results_spotify.mst",
       data: data.tracks,
       append: false,
-      removeUnmatched: true
+      removeUnmatched: true,
+      complete: function(output, context) {
+        $(".preview-frame").hide(); 
+        $(".spotify-result").click(function(e) {
+          e.preventDefault();
+
+          $(".preview-frame").show();
+          $("iframe.preview-frame").attr("src", "https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
+        })
+      }
     }
     renderer.render(options);
   },

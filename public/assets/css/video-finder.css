@@ -19,7 +19,7 @@
   top: 51px;
   bottom: 0;
   right: 0;
-  padding: 5px;
+  padding: 0px;
   margin: 0;
   overflow: auto;
 }
@@ -28,8 +28,8 @@
 }
 
 #tab-container li>a {
+  border-bottom-color: #222;
   color: #999;
-  border-bottom: 1px solid #999;
 }
 
 #tab-container li:hover>a {
@@ -45,7 +45,7 @@
   background-color: #555;
   color: #AAA;
   border-color: #999;
-  border-bottom: 1px solid transparent;
+  border-bottom-color: #555;
 }
 
 .tab-pane {
@@ -116,9 +116,40 @@
 }
 
 .preview {
-  width: 40%;
+  width: 66px;
 }
 
 .preview audio {
   width: 100%;
+}
+
+#spotify .table {
+  color: #FEFEFE;
+}
+
+#spotify .table tr:nth-child(even) {
+  background-color: #404040;
+}
+
+#spotify .table tr:nth-child(odd) {
+  background-color: #4F4F4F;
+}
+
+#spotify .table th{
+  background-color: #5F5F5F;
+}
+
+#spotify .table a {
+  color: #FFBF00;
+}
+
+#spotify .preview {
+}
+
+#spotify .glyphicon-spotify {
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/spotify-black-128.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
