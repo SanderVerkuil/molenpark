@@ -20,7 +20,7 @@
   <tbody>
     {{#tracks}}
       {{#items}}
-        <tr class="spotify-result" data-id="{{uri}}">
+        <tr class="spotify-result" data-id="{{uri}}" data-artist="{{artists}}" data-track="{{name}}" data-album="{{album}}">
           <td>
             {{artists}}
           </td>
