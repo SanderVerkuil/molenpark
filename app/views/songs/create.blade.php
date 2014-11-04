@@ -72,7 +72,7 @@
         {{-- YouTube --}}
         <div class="video-wrapper"><iframe id="video-preview" frameborder="0" src=""></iframe></div>
         <div class="well well-lg info-text search-video"><h4>Begin links met zoeken</h4></div>
-        <div class="well well-lg info-text select-video"><h4>Selecteer een video voor de luisterlink</h4></div>
+        <div class="well well-lg info-text select-video hidden"><h4>Selecteer een video voor de luisterlink</h4></div>
         <div class="scroll-container">
           <table id="video-list" class="table">
 
@@ -82,13 +82,13 @@
 
       </div>
       <div class="tab-pane" id="spotify">
-        <div class='well well-lg'>
+        <div class='well well-lg info-text'>
           <h4>Begin links met zoeken</h4>
         </div>
       </div>
       <div class="tab-pane" id="soundcloud">
         {{-- Soundcloud --}}
-        <div class="well well-lg">
+        <div class="well well-lg info-text">
         <h4>SoundCloud&#153; is nog niet geimplementeerd</h4>
         </div>
 

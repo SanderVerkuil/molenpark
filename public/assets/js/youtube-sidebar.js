@@ -17,8 +17,8 @@ function updateVideos() {
       $('.video-wrapper').hide();
 
       // Switch info text
-      $('.info-text.search-video').hide();
-      $('.info-text.select-video').show();
+      $('.info-text.search-video').addClass("hidden");
+      $('.info-text.select-video').removeClass("hidden");
 
       // Display video results
       $.each(result, function(i, vid) {
@@ -42,7 +42,7 @@ function updateVideos() {
     }
   });
 
-$.ajax(base_url + "/ajax/spotify/10", {
+$.ajax(base_url + "/ajax/spotify/20", {
   data: {
     q: query
   },
@@ -60,8 +60,6 @@ $.ajax(base_url + "/ajax/spotify/10", {
         $(".spotify-result .btn").click(function(e) {
           e.preventDefault();
 
-
-
           $(".preview-frame").show();
           $("iframe.preview-frame").attr("src", "https://embed.spotify.com/?uri=" + $(this).parents("tr").attr("data-id"));
         })
@@ -71,10 +69,20 @@ $.ajax(base_url + "/ajax/spotify/10", {
           $(this).siblings('.selected').removeClass('selected');
           $(this).toggleClass('selected');
 
-          $("#song-title").val($(this).attr("data-track"));
-          $("#song-artist").val($(this).attr("data-artist"));
+          if ($(this).hasClass('selected'))
+          {
 
-          $("#song-link").val("https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
+            $("#song-title").val($(this).attr("data-track"));
+            $("#song-artist").val($(this).attr("data-artist"));
+
+            $("#song-link").val("https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
+            $("#song-link").attr("disabled", "");
+          } else {
+            $("#song-title").val("");
+            $("#song-artist").val("");
+            $("#song-link").val("");
+            $("#song-link").removeAttr("disabled");
+          }
         })
       }
     }
