@@ -49,7 +49,7 @@
 }
 
 .tab-pane {
-  padding: 5px;
+  padding: 0px;
 }
 
 .sidebar iframe {
@@ -147,9 +147,6 @@
   color: #FFBF00;
 }
 
-#spotify .preview {
-}
-
 .glyphicon-spotify {
   width: 24px;
   height: 24px;
@@ -178,4 +175,8 @@
 
 #tab-container .table td {
   vertical-align: middle;
+}
+
+#tab-container .table tr.selected {
+  background-color: #666;
 }

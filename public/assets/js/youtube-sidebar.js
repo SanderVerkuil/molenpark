@@ -57,14 +57,24 @@ $.ajax(base_url + "/ajax/spotify/10", {
       removeUnmatched: true,
       complete: function(output, context) {
         $(".preview-frame").hide(); 
+        $(".spotify-result .btn").click(function(e) {
+          e.preventDefault();
+
+
+
+          $(".preview-frame").show();
+          $("iframe.preview-frame").attr("src", "https://embed.spotify.com/?uri=" + $(this).parents("tr").attr("data-id"));
+        })
         $(".spotify-result").click(function(e) {
           e.preventDefault();
+
+          $(this).siblings('.selected').removeClass('selected');
+          $(this).toggleClass('selected');
 
           $("#song-title").val($(this).attr("data-track"));
           $("#song-artist").val($(this).attr("data-artist"));
 
-          $(".preview-frame").show();
-          $("iframe.preview-frame").attr("src", "https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
+          $("#song-link").val("https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
         })
       }
     }
