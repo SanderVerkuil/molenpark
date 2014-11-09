@@ -54,7 +54,19 @@ class AjaxController extends BaseController {
     }
 
     return Response::json($data);
+  }
 
+  function searchSoundcloud($maxResults = 5)
+  {
+    $query = "";
+
+    $clientid = "7e964ef8cdefc4e90805318b1848c0ba";
+    $clientsecret = "453bf2bb44c53b92ea58201b5e943fc4";
+
+    if (Input::has("q"))
+      $query = Input::get("q");
+
+    return Response::json($query);
   }
 
   function searchYoutube($maxResults = 5)

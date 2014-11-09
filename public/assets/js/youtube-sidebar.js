@@ -2,10 +2,15 @@ var renderer = new Renderer();
 
 /* Functions */
 function updateVideos() {
-  var artist = $('#song-artist').val(),
-  title = $('#song-title').val(),
-  query = $("#song-search").val();
+  UpdateYoutube();
+  UpdateSpotify();
+  UpdateLocal();
+}
 
+
+function UpdateYoutube()
+{
+  query = $("#song-search").val();
   // AJAX request to fetch video results
   $.ajax(base_url + '/ajax/youtube', {
     data: {q:query},
@@ -41,57 +46,65 @@ function updateVideos() {
       });
     }
   });
-
-$.ajax(base_url + "/ajax/spotify/20", {
-  data: {
-    q: query
-  },
-  dataType: "json",
-  success: function(data) {
-    console.log(data);
-    var options = {
-      renderingContext: $("#spotify"),
-      templateUrl: base_url + "assets/templates/results_spotify.mst",
-      data: data,
-      append: false,
-      removeUnmatched: true,
-      complete: function(output, context) {
-        $(".preview-frame").hide(); 
-        $(".spotify-result .btn").click(function(e) {
-          e.preventDefault();
-
-          $(".preview-frame").show();
-          $("iframe.preview-frame").attr("src", "https://embed.spotify.com/?uri=" + $(this).parents("tr").attr("data-id"));
-        })
-        $(".spotify-result").click(function(e) {
-          e.preventDefault();
-
-          $(this).siblings('.selected').removeClass('selected');
-          $(this).toggleClass('selected');
-
-          if ($(this).hasClass('selected'))
-          {
-
-            $("#song-title").val($(this).attr("data-track"));
-            $("#song-artist").val($(this).attr("data-artist"));
-
-            $("#song-link").val("https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
-            $("#song-link").attr("disabled", "");
-          } else {
-            $("#song-title").val("");
-            $("#song-artist").val("");
-            $("#song-link").val("");
-            $("#song-link").removeAttr("disabled");
-          }
-        })
-      }
-    }
-    renderer.render(options);
-  },
-})
 }
 
-function updateSongs() {
+function UpdateSpotify()
+{
+  $.ajax(base_url + "/ajax/spotify/20", {
+    data: {
+      q: query
+    },
+    dataType: "json",
+    success: function(data) {
+      console.log(data);
+      var options = {
+        renderingContext: $("#spotify"),
+        templateUrl: base_url + "assets/templates/results_spotify.mst",
+        data: data,
+        append: false,
+        removeUnmatched: true,
+        complete: function(output, context) {
+          $(".preview-frame").hide(); 
+          $(".spotify-result .btn").click(function(e) {
+            e.preventDefault();
+
+            $(".preview-frame").show();
+            $("iframe.preview-frame").attr("src", "https://embed.spotify.com/?uri=" + $(this).parents("tr").attr("data-id"));
+            e.stopPropagation();
+          })
+          $(".spotify-result").click(function(e) {
+            e.preventDefault();
+
+            $(this).siblings('.selected').removeClass('selected');
+            $(this).toggleClass('selected');
+
+            if ($(this).hasClass('selected'))
+            {
+
+              $("#song-title").val($(this).attr("data-track"));
+              $("#song-artist").val($(this).attr("data-artist"));
+
+              $("#song-link").val("https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
+
+              $("#song-title").attr("disabled", "");
+              $("#song-artist").attr("disabled","");
+              $("#song-link").attr("disabled", "");
+            } else {
+              $("#song-title").val("");
+              $("#song-artist").val("");
+              $("#song-link").val("");
+              $("#song-link").removeAttr("disabled");
+            }
+          })
+        }
+      }
+      renderer.render(options);
+    },
+  })
+}
+
+function UpdateLocal()
+{
   var artist = $('#song-artist').val(),
   title = $('#song-title').val(),
   query = $("#song-search").val();
@@ -170,11 +183,23 @@ $(document).ready(function(){
       $('#song-link').val("http://www.youtube.com/watch?v=" + videoId);
       // Disable link field
       $('#song-link').attr("disabled", "");
+
+      $("#song-artist").removeAttr("disabled");
+      $("#song-title").removeAttr("disabled");
+
+      $("#song-artist").val("");
+      $("#song-title").val("");
     }
     else {
       // On deselection: empty fields
       $('#song-link').val("");
       $('#song-link').removeAttr("disabled");
+
+      $("#song-artist").attr("disabled", "");
+      $("#song-title").attr("disabled", "");
+
+      $("#song-artist").val("");
+      $("#song-title").val("");
     }
   });
 

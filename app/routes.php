@@ -38,3 +38,6 @@ Route::get('ajax/youtube/{results}', 'AjaxController@searchYoutube')->where(arra
 
 Route::get('ajax/spotify', 'AjaxController@searchSpotify');
 Route::get('ajax/spotify/{results}', 'AjaxController@searchSpotify')->where(array('results' => '[0-9]*'));
+
+Route::get('ajax/soundcloud', 'AjaxController@searchSoundcloud');
+Route::get('ajax/soundcloud/{results}', 'AjaxController@searchSpotify')->where(array('results' => '[0-9]*'));

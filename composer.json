@@ -9,7 +9,8 @@
 		"cornford/bootstrapper": "1.*",
 		"way/generators": "~3.0",
 		"google/apiclient": "1.0.*@beta",
-		"doctrine/dbal": "dev-master"
+		"doctrine/dbal": "dev-master",
+		"ise/php-soundcloud": "3.*"
 	},
 	"require-dev": {
     	"barryvdh/laravel-debugbar": "dev-master"
