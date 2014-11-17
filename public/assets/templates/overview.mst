@@ -1,4 +1,4 @@
-  <table class='table-striped table table-bordered table-hover'>
+  <table id="results" class='table-striped table table-bordered table-hover'>
   <thead>
   <tr>
     <th colspan='9' class='meta'>
@@ -64,14 +64,17 @@
     </td>
   </tr>
   {{/data}}
-  {{^data}}
-  <tr>
-    <td colspan='9' class='nonefound'>
-      Er zijn nog geen nummers gevonden
-    </td>
-  </tr>
-  {{/data}}
   </table>
+
+  {{^data}}
+      <a href="{{baseurl}}song/create" class="btn btn-lg btn-block btn-primary">Vraag hem aan!</a>
+
+      <script type="text/javascript">
+      $(document).ready(function() {
+        $("#results").hide();
+      })
+      </script>
+  {{/data}}
 
   {{#hasPages}}
   <ul class='pagination'>

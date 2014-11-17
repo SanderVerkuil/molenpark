@@ -10,7 +10,7 @@ var Renderer = function()
     complete: function(output, context) {},
     append: true,
     removeUnmatched: false,
-    paginate: false
+    paginate: undefined
   }
 
   function Render(opts)
@@ -38,11 +38,14 @@ var Renderer = function()
 
     var data = options.data;
 
+    if (base_url != undefined)
+      data.baseurl = base_url;
+
     html = RenderLoops(data, html);
 
     html = RenderData(data, html);
 
-    if (options.paginate)
+    if (options.paginate != undefined)
       html = Paginate(data, html);
 
     if (options.removeUnmatched)
@@ -141,6 +144,8 @@ var Renderer = function()
     var nextPage = currentPage+1;
     if (nextPage >= last_page)
       nextPage = last_page;
+
+    
 
     var pageInfo = {
       prevDisabled: false,

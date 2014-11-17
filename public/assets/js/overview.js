@@ -30,7 +30,7 @@ function LoadPage()
     info[values[0]] = values[1];
   }
 
-  url = base_url + "ajax/songs/25?page=" + (info.page != undefined ? info.page :  '');
+  url = base_url + "ajax/songs/1?page=" + (info.page != undefined ? info.page :  '');
 
   $.ajax({
     url: url,
@@ -43,7 +43,12 @@ function LoadPage()
         renderingContext: $('#overview'),
         templateUrl: "assets/templates/overview.mst",
         data: jqxhr.responseJSON,
-        paginate: true
+        paginate: {
+          run: true,
+          left: 3,
+          right: 3
+        },
+
       });
     },
     dataType: "json",
