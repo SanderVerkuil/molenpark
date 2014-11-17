@@ -13,13 +13,6 @@
 
 Route::get('/', 'SongsController@index');
 
-Route::get('users', function()
-  {
-    $users = User::all();
-
-    return View::make('users')->with('users',$users);
-  });
-
 Route::resource("song", 'SongsController');
 
 Route::get('ajax/songs', 'AjaxController@songs');
