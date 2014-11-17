@@ -97,6 +97,7 @@
   {{/data}}
 
   {{#hasPages}}
+  <div class="text-center">
   <ul class='pagination'>
 
   <li {{#firstDisabled}} class='disabled'{{/firstDisabled}}><a href='#page={{firstPage}}'>&laquo;</a></li>
@@ -108,5 +109,6 @@
 
   <li{{#nextDisabled}} class='disabled'{{/nextDisabled}}><a href="#page={{nextPage}}">&rsaquo;</a></li>
   <li{{#lastDisabled}} class='disabled'{{/lastDisabled}}><a href="#page={{lastPage}}">&raquo;</a></li>
+  </div>
   {{/hasPages}}
   </ul>

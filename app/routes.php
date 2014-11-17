@@ -15,6 +15,8 @@ Route::get('/', 'SongsController@index');
 
 Route::resource("song", 'SongsController');
 
+Route::controller('users', 'UsersController');
+
 Route::get('ajax/songs', 'AjaxController@songs');
 Route::get('ajax/songs/{perPage}', 'AjaxController@songs')->where(array('perPage' => '[0-9]*'));
 
@@ -26,3 +28,11 @@ Route::get('ajax/spotify/{results}', 'AjaxController@searchSpotify')->where(arra
 
 Route::get('ajax/soundcloud', 'AjaxController@searchSoundcloud');
 Route::get('ajax/soundcloud/{results}', 'AjaxController@searchSpotify')->where(array('results' => '[0-9]*'));
+
+Route::get('signup', function() {
+  return View::make('users.signup')->with(array('css' => 'users'));
+});
+
+Route::get("signin", function() {
+  return View::make('users.signin')->with(array('css' => 'users'));
+});
