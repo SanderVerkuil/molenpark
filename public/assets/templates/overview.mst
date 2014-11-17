@@ -21,7 +21,7 @@
     <th class="nr hidden-xs hidden-sm">
       Tracknummer
     </th>
-    <th class="hidden-xs hidden-sm">
+    <th class="hidden-xs">
       Aanvrager
     </th>
     <th class="hidden-xs hidden-sm">
@@ -50,7 +50,7 @@
     <td class="nr hidden-xs hidden-sm">
       {{track}}
     </td>
-    <td class="requester hidden-xs hidden-sm">
+    <td class="requester hidden-xs">
       {{requester}}
     </td>
     <td class="requested hidden-xs hidden-sm">

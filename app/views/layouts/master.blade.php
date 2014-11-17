@@ -13,8 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- CSS are placed here -->
-    {{ Bootstrap::css() }}
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+    {{ Bootstrap::css('local', ['type' => 'text/css']) }}
     @if (isset($css))
       @if (is_array($css))
         @foreach ($css as $c)
@@ -82,7 +81,7 @@
     <!-- End of container -->
 
     <!-- Start external javascript files -->
-    {{ Bootstrap::js() }}
+    {{ Bootstrap::js('local', ['type' => 'text/javascript']) }}
     @if (isset($javascripts))
       @if (is_array($javascripts))
         @foreach ($javascripts as $js)
