@@ -46,7 +46,7 @@ var Renderer = function()
     html = RenderData(data, html);
 
     if (options.paginate != undefined)
-      html = Paginate(data, html);
+      html = Paginate(options.paginate, data, html);
 
     if (options.removeUnmatched)
       html = RemoveUnmatched(html);
@@ -134,7 +134,7 @@ var Renderer = function()
     return html.replace(/{{(.)*}}/g, "");
   }
 
-  function Paginate(data, html)
+  function Paginate(options, data, html)
   {
     var currentPage = data.current_page;
     var last_page = data.last_page;
@@ -145,7 +145,7 @@ var Renderer = function()
     if (nextPage >= last_page)
       nextPage = last_page;
 
-    
+
 
     var pageInfo = {
       prevDisabled: false,
@@ -171,8 +171,8 @@ var Renderer = function()
       pageInfo.lastDisabled = true;
     }
 
-    start = 1;
-    end = last_page;
+    start = Math.max(1, currentPage-options.left);
+    end = Math.min(last_page, currentPage + options.right);
 
     for (var i = start; i <= end; i+=1)
     {

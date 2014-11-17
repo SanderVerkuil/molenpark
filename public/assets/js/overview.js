@@ -30,7 +30,7 @@ function LoadPage()
     info[values[0]] = values[1];
   }
 
-  url = base_url + "ajax/songs/1?page=" + (info.page != undefined ? info.page :  '');
+  url = base_url + "ajax/songs/15?page=" + (info.page != undefined ? info.page :  '');
 
   $.ajax({
     url: url,

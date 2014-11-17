@@ -6,7 +6,7 @@
     </th>
   </tr>
   <tr>
-    <th class="status hidden-xs hidden-sm">
+    <th class="status hidden-xs">
       Status
     </th>
     <th class="artist">
@@ -35,7 +35,7 @@
   </thead>
   {{#data}}
   <tr>
-    <td class="status hidden-xs hidden-sm">
+    <td class="status hidden-xs">
       {{status}}
     </td>
     <td class="artist">
@@ -71,7 +71,27 @@
 
       <script type="text/javascript">
       $(document).ready(function() {
-        $("#results").hide();
+
+        var info = new Array();
+
+        var array = location.hash.substr(1).split('&');
+
+        for (var i = 0; i < array.length; i += 1)
+        {
+          var values = array[i].split('=');
+
+          info[values[0]] = values[1];
+        }
+
+        console.log(info);
+
+        if (info["page"] != undefined && info.page != 1)
+        {
+          info["page"] = 1;
+          location.hash = "#page=" + info.page ;
+        } else {
+          $("#results").hide();
+        }
       })
       </script>
   {{/data}}
