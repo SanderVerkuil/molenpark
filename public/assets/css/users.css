@@ -20,7 +20,8 @@
 }
 
 body {
-  background-size: cover;
+  -webkit-background-size: cover; /* Safari 3-4 */
+          background-size: cover; /* Chrome, Firefox 4+, IE 9+, Opera, Safari 5+ */
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;

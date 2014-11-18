@@ -16,9 +16,9 @@ class UsersController extends BaseController {
 
     if ($validator->passes()) {
       $user = new User;
-      $user->username = Input::get('username');
+      $user->username = Input::get('gebruikersnaam');
       $user->email = Input::get('email');
-      $user->password = Hash::make(Input::get('password'));
+      $user->password = Hash::make(Input::get('wachtwoord'));
       $user->activation = generateRandomString(64);
       $user->activation_due = Carbon::now()->addWeek();
       $user->save();
@@ -29,6 +29,7 @@ class UsersController extends BaseController {
     } else {
       // Validation didn't pass. :'(
       Session::flash('error', 'Er waren fouten met het opslaan');
+      Debugbar::log($validator->messages());
       return Redirect::to('users/register')->withErrors($validator)->withInput();
     }
   }
@@ -38,7 +39,7 @@ class UsersController extends BaseController {
   }
 
   public function postLogin() {
-    $input = array('username' => Input::get('username'), 'password' => Input::get('password'));
+    $input = array('username' => Input::get('gebruikersnaam'), 'password' => Input::get('wachtwoord'));
     if (Auth::attempt($input))
     {
       Session::flash('success', 'Succesvol ingelogd!');

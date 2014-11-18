@@ -6,16 +6,6 @@
 
 @section('body')
   @include('snippets/navbar')
-  @if(Session::has('success'))
-        {{ Bootstrap::success(Session::get('success')) }}
-      @endif
-      @if(Session::has('error'))
-        {{ Bootstrap::danger(Session::get('error')) }}
-      @endif
-      @if(Session::has('info'))
-        {{ Bootstrap::danger(Session::get('info')) }}
-      @endif
-
 
   <div class="users-container">
       <div class="modal-dialog">
@@ -25,8 +15,11 @@
           </div>
           <div class="modal-body">
             {{ Form::open(array('url' => 'users/login')) }}
-            {{ Bootstrap::vertical()->text('username', 'Gebruikersnaam') }}
-            {{ Bootstrap::vertical()->password('password', 'Wachtwoord') }}
+            {{ Bootstrap::vertical()->text('gebruikersnaam', 'Gebruikersnaam') }}
+            {{ Bootstrap::vertical()->password('wachtwoord', 'Wachtwoord') }}
+            <p class="text-right">
+              <a href="{{ URL::to('users/register') }}">Nog geen account?</a>
+            </p>
           </div>
           <div class="modal-footer">
             {{ Bootstrap::vertical()->submit('Inloggen') }}

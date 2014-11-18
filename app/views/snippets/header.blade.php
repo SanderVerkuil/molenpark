@@ -11,6 +11,7 @@
 
 <!-- CSS are placed here -->
 {{ Bootstrap::css('local', ['type' => 'text/css']) }}
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/jquery.growl.css") }}">
 @if (isset($css))
 @if (is_array($css))
 @foreach ($css as $c)

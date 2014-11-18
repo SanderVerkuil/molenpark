@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'nl',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -123,7 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-                'Cornford\Bootstrapper\BootstrapServiceProvider',
+    'Cornford\Bootstrapper\BootstrapServiceProvider',
 
 	),
 
@@ -191,9 +191,9 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-                'Bootstrap'         => 'Cornford\Bootstrapper\Facades\Bootstrap',
+    'Bootstrap'         => 'Cornford\Bootstrapper\Facades\Bootstrap',
     'Debugbar'          => 'Barryvdh\Debugbar\Facade',
-    'Carbon'            => 'Carbon\Carbon'
+    'Carbon'            => 'Carbon\Carbon',
 
 	),
 
