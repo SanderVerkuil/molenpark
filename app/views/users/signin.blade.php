@@ -6,6 +6,16 @@
 
 @section('body')
   @include('snippets/navbar')
+  @if(Session::has('success'))
+        {{ Bootstrap::success(Session::get('success')) }}
+      @endif
+      @if(Session::has('error'))
+        {{ Bootstrap::danger(Session::get('error')) }}
+      @endif
+      @if(Session::has('info'))
+        {{ Bootstrap::danger(Session::get('info')) }}
+      @endif
+
 
   <div class="users-container">
       <div class="modal-dialog">

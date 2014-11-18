@@ -1,1 +1,1 @@
-<p class='navbar-text'>Signed in as {{{$name}}}</p>
+<li><a href="users/logout" title="uitloggen">Signed in as {{{Auth::user()->username}}}</a></li>

@@ -30,9 +30,9 @@ class AddVotingToSong extends Migration {
 		Schema::table('song', function(Blueprint $table)
 		{
 			if (Schema::hasColumn('song', 'supporters'))
-				$table->dropCOlumn('song', 'supporters');
+				$table->dropColumn('song', 'supporters');
 			if (Schema::hasColumn('song', 'opposers'))
-				$table->dropCOlumn('song', 'opposers');
+				$table->dropColumn('song', 'opposers');
 		});
 	}
 

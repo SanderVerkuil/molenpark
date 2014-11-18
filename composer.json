@@ -23,6 +23,9 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
+		],
+		"files": [
+			"app/helpers.php"
 		]
 	},
 	"scripts": {

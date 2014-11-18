@@ -14,15 +14,14 @@
     <!-- Everything you want hidden at 940px or less, place within here -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="{{{ URL::to('') }}}">Home</a></li>
+        <li><a href="{{{ URL::to('') }}}">Thuis</a></li>
         <li><a href="{{{ URL::to('song/create') }}}">Aanvragen</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>hai</li>
         @if (Auth::check())
-        @include('layouts/loggedin')
+          @include('layouts/loggedin')
         @else
-        @include('layouts/notloggedin')
+          <li><a href="{{URL::to('users/login')}}">Inloggen</a></li>
         @endif
       </ul>
     </div>

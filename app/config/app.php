@@ -192,7 +192,8 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
                 'Bootstrap'         => 'Cornford\Bootstrapper\Facades\Bootstrap',
-    'Debugbar'          => 'Barryvdh\Debugbar\Facade'
+    'Debugbar'          => 'Barryvdh\Debugbar\Facade',
+    'Carbon'            => 'Carbon\Carbon'
 
 	),
 

@@ -11,13 +11,13 @@
     <div class="container-fluid">
 
       @if(Session::has('success'))
-        {{ Bootstrap::success(Session::get('success')) }}
+        {{ Bootstrap::success(Session::get('success'), '', true) }}
       @endif
       @if(Session::has('error'))
-        {{ Bootstrap::danger(Session::get('error')) }}
+        {{ Bootstrap::danger(Session::get('error'), '', true) }}
       @endif
       @if(Session::has('info'))
-        {{ Bootstrap::danger(Session::get('info')) }}
+        {{ Bootstrap::danger(Session::get('info'), '', true) }}
       @endif
 
       <!-- Content -->
