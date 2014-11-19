@@ -57,7 +57,7 @@
   </div>
 
   {{-- Tabs --}}
-  <div id="tab-container" class="col-sm-6 hidden-xs">
+  <div id="tab-container" class="col-sm-6">
     {{-- Tab navigation --}}
     <ul class="nav nav-tabs nav-justified" role="tablist">
       <li class="active"><a href="#youtube" role="tab" data-toggle="tab">YouTube</a></li>

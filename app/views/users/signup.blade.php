@@ -6,8 +6,10 @@
 
 
 @section("body")
+  <div class="background"></div>
 
   @include("snippets/navbar")
+  
   <div class="users-container">
       <div class="modal-dialog">
         <div class="modal-content">

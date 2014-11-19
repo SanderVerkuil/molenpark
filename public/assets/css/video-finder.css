@@ -1,40 +1,13 @@
-.sidebar {
-  height: 100%;
-  height: calc(100% - 51px);
-  position: absolute;
-  top: 51px;
-  bottom: 0;
-  right: 0;
-  padding: 0px 0 0 0;
-  margin: 0;
-  background-color: #353535;
-  overflow: auto;
-}
-
 #tab-container {
-  background-color: #353535;
-  height: 100%;
-  height: calc(100% - 51px);
-  position: absolute;
-  top: 51px;
-  bottom: 0;
-  right: 0;
-  padding: 0px;
-  margin: 0;
-  overflow: auto;
 }
 
 #tab-container li {
 }
 
 #tab-container li>a {
-  border-bottom-color: #222;
-  color: #999;
 }
 
 #tab-container li:hover>a {
-  background-color: #676767;
-  border-color: #999;
 }
 
 #tab-container li.active {
@@ -42,10 +15,6 @@
 }
 
 #tab-container li.active>a {
-  background-color: #555;
-  color: #AAA;
-  border-color: #999;
-  border-bottom-color: #555;
 }
 
 .tab-pane {
@@ -124,30 +93,6 @@
   width: 100%;
 }
 
-#tab-container .table {
-  color: #FEFEFE;
-}
-
-#tab-container .table tr td{
-  border-color: #777;
-}
-
-#tab-container .table tr:nth-child(even) {
-  background-color: #404040;
-}
-
-#tab-container .table tr:nth-child(odd) {
-  background-color: #484848;
-}
-
-#tab-container .table th{
-  background-color: #4F4F4F;
-}
-
-#tab-container .table a {
-  color: #FFBF00;
-}
-
 .glyphicon-spotify {
   width: 24px;
   height: 24px;
@@ -168,16 +113,4 @@
 
 .btn-spotify:hover {
   background-color: #32B71A;
-}
-
-#tab-container .table tr:hover {
-  background-color: #555;
-}
-
-#tab-container .table td {
-  vertical-align: middle;
-}
-
-#tab-container .table tr.selected {
-  background-color: #666;
 }

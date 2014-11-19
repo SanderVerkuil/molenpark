@@ -2,7 +2,7 @@
 
 class AjaxController extends BaseController {
 
-	function songs($perPage = 5)
+	function getSongs($perPage = 5)
 	{
 
     $artist = Input::get("artist");
@@ -14,7 +14,12 @@ class AjaxController extends BaseController {
     return Response::json($data);
   }
 
-  function searchSpotify($maxResults = 10)
+  function getFreebase($maxResults = 10)
+  {
+    return Response::json($this->searchFreebase(Input::get("q"), $maxResults));
+  }
+
+  function getSpotify($maxResults = 10)
   {
     $curl = curl_init();
     $query = "Never gonna give you up";
@@ -56,7 +61,7 @@ class AjaxController extends BaseController {
     return Response::json($data);
   }
 
-  function searchSoundcloud($maxResults = 5)
+  function getSoundcloud($maxResults = 5)
   {
     $query = "";
 
@@ -69,7 +74,32 @@ class AjaxController extends BaseController {
     return Response::json($query);
   }
 
-  function searchYoutube($maxResults = 5)
+  private function searchFreebase($query, $maxResults = 10)
+  {
+    $client = new Google_Client();
+    $client->setDeveloperKey("AIzaSyA9KWQHrYK-ByJRqyR727BFkvY0LUnecG8");
+
+    $freebase = new Google_Service_Freebase($client);
+
+    $response = $freebase->search(array("query" => $query, "limit" => $maxResults, "type" => "/music/recording"));
+
+    return $response["result"];
+  }
+
+  public function getFreebaseinfo($mid)
+  {
+    $client = new Google_Client();
+    $client->setDeveloperKey("AIzaSyA9KWQHrYK-ByJRqyR727BFkvY0LUnecG8");
+
+    $freebase = new Google_Service_Freebase($client);
+
+    $response = $freebase->topic("/m/$mid");
+
+    return Response::json($response);
+
+  }
+
+  function getYoutube($maxResults = 5)
   {
     $artist = "";
     $title = "";
@@ -87,7 +117,7 @@ class AjaxController extends BaseController {
 
     $youtube = new Google_Service_YouTube($client);
     try {
-      $response = $youtube->search->listSearch("id,snippet", array("q" => $query, "maxResults" => $maxResults));
+      $response = $youtube->search->listSearch("id,snippet", array("q" => $query, "maxResults" => $maxResults, "videoEmbeddable" => "true", "type" => "video" ));
 
       $items = array();
 
