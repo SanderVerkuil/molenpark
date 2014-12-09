@@ -62,8 +62,8 @@ var Renderer = function()
   function RenderLoops(data, html)
   {
     $.each(data, function(key, value) {
-      var markupRegex = new RegExp("{{#" + key + "}}((.|\n)*?){{\\/" + key + "}}", "ig");
-      var hiddenRegex = new RegExp("{{\\^" + key + "}}((.|\n)*?){{\\/" + key + "}}", "ig");
+      var markupRegex = new RegExp("{{#" + key + "}}((.|\n|\r)*?){{\\/" + key + "}}", "ig");
+      var hiddenRegex = new RegExp("{{\\^" + key + "}}((.|\n|\r)*?){{\\/" + key + "}}", "ig");
 
       var markupMatch = markupRegex.exec(html);
       var hiddenMatch = hiddenRegex.exec(html);
