@@ -11,14 +11,14 @@
 
 <!-- CSS are placed here -->
 {{ Bootstrap::css('local', ['type' => 'text/css']) }}
-<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/jquery.growl.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/min/jquery.css") }}">
 @if (isset($css))
 @if (is_array($css))
 @foreach ($css as $c)
-<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/$c.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/min/$c.css") }}">
 @endforeach
 @else
-<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/$css.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/min/$css.css") }}">
 @endif
 @endif
 <!-- End CSS -->

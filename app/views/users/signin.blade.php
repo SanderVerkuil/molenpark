@@ -5,7 +5,8 @@
 @endsection
 
 @section('body')
-  <div class="background"></div>
+  <div class="background">
+  </div>
   @include('snippets/navbar')
 
   <div class="users-container">

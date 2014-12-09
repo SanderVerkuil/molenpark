@@ -19,6 +19,25 @@ class AjaxController extends BaseController {
     return Response::json($this->searchFreebase(Input::get("q"), $maxResults));
   }
 
+  function getRandomImage($subreddit = "cats")
+  {
+    $url = "http://reddit.com/r/$subreddit/.json";
+
+    $json = json_decode(file_get_contents($url));
+
+    $regex = "/http(s)?:\/\/i\.imgur\.com\/[a-z0-9]*.jpg/i";
+
+    Debugbar::log(count($json->data->children));
+
+    do {
+      $image = rand(1, count($json->data->children))-1;
+
+      $url = $json->data->children[$image]->data->url;
+    } while (!preg_match($regex, $url));
+
+    return Response::make(file_get_contents($url), 200, ['content-type' => 'image/jpg']);
+  }
+
   function getSpotify($maxResults = 10)
   {
     $curl = curl_init();
