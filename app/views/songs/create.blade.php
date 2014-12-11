@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="row">
-  <div class="col-sm-6 youtube-search">
-    <form id="song-form" role="form" method="post">
+  <div class="col-sm-6 form-container">
+    <form id="song-form" role="form" method="post" @if (Input::has('artist') || Input::has('title')) class="prefilled" @endif>
 
       {{-- Search --}}
       <div class="form-group">
         <label for="song-search">Zoeken</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-          <input type="text" name="search" id="song-search" class="song-info form-control" placeholder = "bijv. Rick Astley - Never gonna give you up" />
+          <input type="text" name="search" id="song-search" class="song-info form-control" value="{{implode(' - ',array_filter(Input::only('artist','title')))}}" placeholder="bijv. 'rick astley - never gonna give you up'" />
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <label for="song-artist">Artiest</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-          <input type="text" name="artist" id="song-artist" class="song-info form-control" disabled placeholder="bijv. Rick Astley">
+          <input type="text" name="artist" id="song-artist" class="song-info form-control" value="{{titleCase(Input::get('artist'))}}" disabled placeholder="bijv. Rick Astley">
         </div>
       </div>
 
@@ -28,7 +28,7 @@
         <label for="song-title">Titel</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-music"></span></div>
-          <input type="text" name="title" id="song-title" class="song-info form-control" disabled placeholder="bijv. Never Gonna Give You Up">
+          <input type="text" name="title" id="song-title" class="song-info form-control" value="{{titleCase(Input::get('title'))}}" disabled placeholder="bijv. Never Gonna Give You Up">
         </div>
       </div>
 
@@ -43,10 +43,18 @@
 
       {{-- Requester --}}
       <div class="form-group">
-        <label for="song-title">Aanvrager</label>
+        <label for="song-requester">Aanvrager</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-bullhorn"></span></div>
-          <input type="text" name="requester" id="song-requester" class="form-control" placeholder="bijv. Je Moeder">
+          <input type="text" name="requester" id="song-requester" class="form-control" value="{{Cookie::get('requester')}}" placeholder="bijv. Je Moeder">
+        </div>
+        <div class="checkbox">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="song-priority"> Top 5 / Priority
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="remember-requester"> Onthoud mij
+          </label>
         </div>
       </div>
 
@@ -71,8 +79,8 @@
 
         {{-- YouTube --}}
         <div class="video-wrapper"><iframe id="video-preview" frameborder="0" src=""></iframe></div>
-        <div class="well well-lg info-text search-video"><h4>Begin links met zoeken</h4></div>
-        <div class="well well-lg info-text select-video hidden"><h4>Selecteer een video voor de luisterlink</h4></div>
+        <div class="well well-sm info-text search-video"><h4 class="text-center">Begin links met zoeken</h4></div>
+        <div class="well well-sm info-text select-video hidden"><h4 class="text-center">Selecteer een video voor de luisterlink</h4></div>
         <div class="scroll-container">
           <table id="video-list" class="table">
 
@@ -82,14 +90,14 @@
 
       </div>
       <div class="tab-pane" id="spotify">
-        <div class='well well-lg info-text'>
-          <h4>Begin links met zoeken</h4>
+        <div class='well well-sm info-text'>
+          <h4 class="text-center">Begin links met zoeken</h4>
         </div>
       </div>
       <div class="tab-pane" id="soundcloud">
         {{-- Soundcloud --}}
-        <div class="well well-lg info-text">
-        <h4>SoundCloud&#153; is nog niet geimplementeerd</h4>
+        <div class="well well-sm info-text">
+        <h4 class="text-center">SoundCloud&#153; is nog niet geimplementeerd</h4>
         </div>
 
       </div>

@@ -67,9 +67,16 @@
   </table>
 
   {{^data}}
-      <a href="{{baseurl}}song/create" class="btn btn-lg btn-block btn-primary">Vraag hem aan!</a>
+      <a id="request" href="{{baseurl}}song/create" class="btn btn-lg btn-block btn-primary">Vraag hem aan!</a>
 
       <script type="text/javascript">
+      var req = {
+        "artist": $("#artiest").val(),
+        "title": $("#title").val()
+      };
+      console.log($.param(req));
+      $("#request").attr("href", $("#request").attr("href") + "?" + $.param(req) );
+
       $(document).ready(function() {
 
         var info = new Array();

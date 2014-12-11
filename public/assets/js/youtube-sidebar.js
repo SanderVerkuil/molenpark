@@ -7,7 +7,6 @@ function updateVideos() {
   UpdateLocal();
 }
 
-
 function UpdateYoutube()
 {
   query = $("#song-search").val();
@@ -15,6 +14,9 @@ function UpdateYoutube()
   $.ajax(base_url + '/ajax/youtube', {
     data: {q:query},
     dataType: "json",
+    error: function (e) {
+      console.error("[YouTube] "+e.responseText);
+    },
     success: function(result) {
       // Clear video preview
       $('#video-list').html("");
@@ -55,6 +57,9 @@ function UpdateSpotify()
       q: query
     },
     dataType: "json",
+    error: function (e) {
+      console.error("[Spotify] "+e.responseText);
+    },
     success: function(data) {
       console.log(data);
       var options = {
@@ -187,8 +192,13 @@ $(document).ready(function(){
       $("#song-artist").removeAttr("disabled");
       $("#song-title").removeAttr("disabled");
 
-      $("#song-artist").val("");
-      $("#song-title").val("");
+      if (!$('#song-form').hasClass("prefilled")) {
+        $("#song-artist").val("");
+        $("#song-title").val("");
+      }
+      else {
+        $('#song-form').removeClass("prefilled");
+      }
     }
     else {
       // On deselection: empty fields
@@ -202,6 +212,11 @@ $(document).ready(function(){
       $("#song-title").val("");
     }
   });
+
+  // If search value is pre filled: search on page load
+  if ($('#song-search').val() != "") {
+    updateVideos();
+  }
 
   // On song info change (and form submit for now): update video results
   $('.song-info').change(updateVideos);

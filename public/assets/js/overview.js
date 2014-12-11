@@ -2,7 +2,6 @@ var renderer = new Renderer();
 
 $(document).ready(function() {
 
-
   $(window).hashchange(function(e) {
     LoadPage();
   })
@@ -19,6 +18,10 @@ $(document).ready(function() {
 
 function LoadPage()
 {
+  if ($("#artiest").val() == "" && $("#title").val() == "") {
+    return;
+  }
+
   var values, info = {};
 
   var array = location.hash.substr(1).split('&');

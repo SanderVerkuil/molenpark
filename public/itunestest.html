@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>iTunes Store AutoSearch</title>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+  <a href="https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html" target="_blank">Using iTunes's Search API</a>
+
+  <pre id="result">Searching for "Chromeo+Fall+Back+2U" ...</pre>
+
+  <script type="text/javascript">
+  	function iTunesSearch(response) {
+  		console.log(response.results);
+  		$('#result').append("\nFound "+response.results.length+" result(s)! (See console)");
+  	}
+  </script>
+  <script src="https://itunes.apple.com/search?term=Chromeo+Fall+Back+2U&country=NL&media=music&callback=iTunesSearch"></script>
+
+</body>
+</html>
