@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th colspan='9' class='meta'>
-    Nummer {{from}} tot en met {{to}}. Pagina {{current_page}} van de {{last_page}}
+    Nummer {{from}} tot {{to}}. Pagina {{current_page}} van {{last_page}}
     </th>
   </tr>
   <tr>

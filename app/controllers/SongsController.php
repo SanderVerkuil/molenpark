@@ -26,9 +26,7 @@ class SongsController extends Controller {
 	{
 		$css = array("video-finder");
 		$js = array("renderer","youtube-sidebar");
-		$artist = Request::get("artist");
-		$title = Request::get("title");
-		return View::make('songs.create', array("css" => $css, "javascripts" => $js, "artist" => $artist, "title" => $title));
+		return View::make('songs.create', array("css" => $css, "javascripts" => $js));
 	}
 
 	/**
@@ -38,9 +36,40 @@ class SongsController extends Controller {
 	 */
 	public function store()
 	{
-		Song::create(Request::get());
+		// Set rules for validator
+		$rules = array(
+			"artist" => "required",
+			"title" => "required",
+			"requester" => "required",
+			"link" => "required|url"
+		);
 
-		return Redirect::route('songs.index')->with();
+		// Validate input
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+				// TODO: Remember form input...
+        return Redirect::to('song/create')->withErrors($validator, "song");
+    }
+
+    // Create new song
+    $song = Input::all();
+
+		Song::create($song);
+
+		// Set success message
+		$msg = "Gefeliciteerd! Je nummer is aangevraagd :D";
+
+		// Set or unset remember cookie
+		if (isset($song['remember-requester'])) {
+			$cookie = Cookie::make("requester", $song['requester']);
+		}
+		else {
+			$cookie = Cookie::forget("requester");
+		}
+
+		// Redirect to song index page with message and cookie
+		return Redirect::to("/")->with("success", $msg)->withCookie($cookie);
 	}
 
 	/**

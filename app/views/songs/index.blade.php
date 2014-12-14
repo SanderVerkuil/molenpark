@@ -2,6 +2,10 @@
 
 @section('content')
 
+{{--@if (Session::has("success"))
+<div class="alert alert-success">{{Session::get("success")}}</div>
+@endif--}}
+
 <div class="row">
   <div class="col-sm-12 column">
     <form role="form" method="get" id="search">

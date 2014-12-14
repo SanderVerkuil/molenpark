@@ -18,6 +18,7 @@ function UpdateYoutube()
       console.error("[YouTube] "+e.responseText);
     },
     success: function(result) {
+      console.log("[YouTube] Success!");
       // Clear video preview
       $('#video-list').html("");
       $('#video-preview').attr("src", "");
@@ -61,6 +62,7 @@ function UpdateSpotify()
       console.error("[Spotify] "+e.responseText);
     },
     success: function(data) {
+      console.log("[Spotify] Success!");
       console.log(data);
       var options = {
         renderingContext: $("#spotify"),
@@ -91,14 +93,14 @@ function UpdateSpotify()
 
               $("#song-link").val("https://embed.spotify.com/?uri=" + $(this).attr("data-id"));
 
-              $("#song-title").attr("disabled", "");
-              $("#song-artist").attr("disabled","");
-              $("#song-link").attr("disabled", "");
+              $("#song-title").attr("readonly", "");
+              $("#song-artist").attr("readonly","");
+              $("#song-link").attr("readonly", "");
             } else {
               $("#song-title").val("");
               $("#song-artist").val("");
               $("#song-link").val("");
-              $("#song-link").removeAttr("disabled");
+              $("#song-link").removeAttr("readonly");
             }
           })
         }
@@ -149,6 +151,20 @@ function responsiveThumbnail(thumbs)
 
   return med.prop('outerHTML') + low.prop('outerHTML');
 }
+
+function isFilled(field)
+{
+  // Also takes an array of field selectors
+  if ($.isArray(field)) {
+    var res = true;
+    $.each(field, function (i,f) {
+      res = res && $(f).val() != "";
+    });
+    return res;
+  }
+
+  return $(field).val() != "";
+}
 /* END functions */
 
 /* Document Ready */
@@ -186,11 +202,12 @@ $(document).ready(function(){
       // On selection: set video link field
       var videoId = $(this).data("id");
       $('#song-link').val("http://www.youtube.com/watch?v=" + videoId);
+      $('#song-yt-key').val(videoId);
       // Disable link field
-      $('#song-link').attr("disabled", "");
+      $('#song-link').attr("readonly", "");
 
-      $("#song-artist").removeAttr("disabled");
-      $("#song-title").removeAttr("disabled");
+      $("#song-artist").removeAttr("readonly");
+      $("#song-title").removeAttr("readonly");
 
       if (!$('#song-form').hasClass("prefilled")) {
         $("#song-artist").val("");
@@ -203,10 +220,10 @@ $(document).ready(function(){
     else {
       // On deselection: empty fields
       $('#song-link').val("");
-      $('#song-link').removeAttr("disabled");
+      $('#song-link').removeAttr("readonly");
 
-      $("#song-artist").attr("disabled", "");
-      $("#song-title").attr("disabled", "");
+      $("#song-artist").attr("readonly", "");
+      $("#song-title").attr("readonly", "");
 
       $("#song-artist").val("");
       $("#song-title").val("");
@@ -220,11 +237,24 @@ $(document).ready(function(){
 
   // On song info change (and form submit for now): update video results
   $('.song-info').change(updateVideos);
-  $('#song-form').submit(function(e){
+  $('#song-form :input').keyup(function (){
+    var required = new Array(
+      '#song-link', '#song-title', '#song-artist', '#song-requester'
+    );
+    console.log(required);
+    console.log(isFilled(required));
+    if (isFilled(required)) {
+      $('#song-submit').removeAttr("disabled");
+    }
+    else {
+      $('#song-submit').attr("disabled", "");
+    }
+  });
+  /*$('#song-form').submit(function(e){
     e.preventDefault();
     console.log("form submit");
     updateVideos();
-  });
+  });*/
 
 });
 /* END document ready */
