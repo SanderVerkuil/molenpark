@@ -10,6 +10,12 @@ function updateVideos() {
 function UpdateYoutube()
 {
   query = $("#song-search").val();
+
+  // Switch info text
+  $('.info-text.search-video').addClass("hidden");
+  $('.info-text.select-video').addClass("hidden");
+  $('.info-text.loading-video').removeClass("hidden");
+
   // AJAX request to fetch video results
   $.ajax(base_url + '/ajax/youtube', {
     data: {q:query},
@@ -26,6 +32,7 @@ function UpdateYoutube()
 
       // Switch info text
       $('.info-text.search-video').addClass("hidden");
+      $('.info-text.loading-video').addClass("hidden");
       $('.info-text.select-video').removeClass("hidden");
 
       // Display video results
@@ -235,12 +242,14 @@ $(document).ready(function(){
     updateVideos();
   }
 
-  // On song info change (and form submit for now): update video results
+  // On song info change: update video results
   $('.song-info').change(updateVideos);
+  
+  // Check required fields when typing
+  var required = new Array(
+    '#song-link', '#song-title', '#song-artist', '#song-requester'
+  );
   $('#song-form :input').keyup(function (){
-    var required = new Array(
-      '#song-link', '#song-title', '#song-artist', '#song-requester'
-    );
     console.log(required);
     console.log(isFilled(required));
     if (isFilled(required)) {
@@ -250,11 +259,11 @@ $(document).ready(function(){
       $('#song-submit').attr("disabled", "");
     }
   });
-  /*$('#song-form').submit(function(e){
-    e.preventDefault();
-    console.log("form submit");
-    updateVideos();
-  });*/
+  
+  // Enable submit when everything is already prefilled
+  if (isFilled(required)) {
+    $('#song-submit').removeAttr("disabled");
+  }
 
 });
 /* END document ready */

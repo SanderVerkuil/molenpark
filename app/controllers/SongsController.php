@@ -55,11 +55,6 @@ class SongsController extends Controller {
     // Create new song
     $song = Input::all();
 
-		Song::create($song);
-
-		// Set success message
-		$msg = "Gefeliciteerd! Je nummer is aangevraagd :D";
-
 		// Set or unset remember cookie
 		if (isset($song['remember-requester'])) {
 			$cookie = Cookie::make("requester", $song['requester']);
@@ -67,6 +62,15 @@ class SongsController extends Controller {
 		else {
 			$cookie = Cookie::forget("requester");
 		}
+
+    if (!is_null(Song::whereRaw("LOWER(artist) = '".strtolower($song['artist'])."' OR LOWER(title) = '".strtolower($song['title'])."'"))) {
+    	return Redirect::to('song/create')->with('error', "HEBBEN WE AL!!!")->withCookie($cookie);
+    }
+
+		Song::create($song);
+
+		// Set success message
+		$msg = "Gefeliciteerd! Je nummer is aangevraagd :D";
 
 		// Redirect to song index page with message and cookie
 		return Redirect::to("/")->with("success", $msg)->withCookie($cookie);

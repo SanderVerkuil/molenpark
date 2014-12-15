@@ -85,6 +85,7 @@
         {{-- YouTube --}}
         <div class="video-wrapper"><iframe id="video-preview" frameborder="0" src=""></iframe></div>
         <div class="well well-sm info-text search-video"><h4 class="text-center">Begin links met zoeken</h4></div>
+        <div class="well well-sm info-text loading-video hidden"><h4 class="text-center">Zoeken...</h4></div>
         <div class="well well-sm info-text select-video hidden"><h4 class="text-center">Selecteer een video voor de luisterlink</h4></div>
         <div class="scroll-container">
           <table id="video-list" class="table">
