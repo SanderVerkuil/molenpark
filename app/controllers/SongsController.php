@@ -63,7 +63,7 @@ class SongsController extends Controller {
 			$cookie = Cookie::forget("requester");
 		}
 
-    if (!is_null(Song::whereRaw("LOWER(artist) = '".strtolower($song['artist'])."' OR LOWER(title) = '".strtolower($song['title'])."'"))) {
+    if (Song::whereRaw("LOWER(artist) = '".strtolower($song['artist'])."' AND LOWER(title) = '".strtolower($song['title'])."'")->count() > 0) {
     	return Redirect::to('song/create')->with('error', "HEBBEN WE AL!!!")->withCookie($cookie);
     }
 
