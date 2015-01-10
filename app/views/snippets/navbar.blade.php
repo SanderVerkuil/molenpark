@@ -9,12 +9,11 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" href="#">Molenpark</a>
+      <a class="navbar-brand" href="{{{ URL::to('') }}}">DiscoCie</a>
     </div>
     <!-- Everything you want hidden at 940px or less, place within here -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="{{{ URL::to('') }}}">Thuis</a></li>
         <li><a href="{{{ URL::to('song/create') }}}">Aanvragen</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

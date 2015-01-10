@@ -18,6 +18,10 @@
     <!-- End of container -->
 @endsection
 
+@section('footer')
+  @include('snippets/footer')
+@endsection
+
 @section('javascripts')
   @include('snippets/javascripts')
 @endsection

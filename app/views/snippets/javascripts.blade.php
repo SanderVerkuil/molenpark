@@ -12,6 +12,11 @@
 @endif
 
 <script type="text/javascript">
+  /*$(window).on("scroll resize", function() {
+    $('footer').(0);
+    console.log("footer bottom pls");
+  });*/
+
   $(document).ready(function() {
     @if(Session::has('success'))
       $.growl.notice({message:"{{Session::get('success')}}"});

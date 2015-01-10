@@ -33,5 +33,19 @@
   .help {
     cursor: help;
   }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #f5f5f5;
+  }
+  .footer div {
+    width: auto;
+    text-align: center;
+  }
+  .footer p {
+    margin: 10px 0;
+  }
 </style>
 @yield('styles')
