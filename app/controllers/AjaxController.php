@@ -5,11 +5,14 @@ class AjaxController extends BaseController {
 	function getSongs($perPage = 5)
 	{
 
+    global $artist;
     $artist = Input::get("artist");
     $title = Input::get("title");
 
-    $data = Song::where('artist', 'LIKE', "%$artist%")->
-    where('title',  'LIKE', "%$title%", 'AND')->orderBy('updated_at', 'DESC')->paginate($perPage);
+    $data = Song::where(function($q){
+      global $artist;
+      $q->where('artist', 'LIKE', "$artist%")->orWhere('artist', 'LIKE', "the $artist%");
+    })->where('title',  'LIKE', "$title%", 'AND')->orderBy('updated_at', 'DESC')->paginate($perPage);
 
     return Response::json($data);
   }
