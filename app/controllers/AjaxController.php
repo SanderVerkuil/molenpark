@@ -9,10 +9,6 @@ class AjaxController extends BaseController {
     $artist = Input::get("artist");
     $title = Input::get("title");
 
-    if (empty($artist) && empty($title))
-      return Response::json([]);
-
-
     $data = Song::where(function($q){
       global $artist;
       $q->where('artist', 'LIKE', "%$artist%");
@@ -32,7 +28,7 @@ class AjaxController extends BaseController {
 
     $json = json_decode(file_get_contents($url));
 
-    $regex = "/http(s)?:\/\/i\.imgur\.com\/[a-z0-9]*.jpg/i";
+    $regex = "/http(s)?:\/\/i\.imgur\.com\/[a-z0-9]*.(jpg|png)/i";
 
     Debugbar::log(count($json->data->children));
 
@@ -160,6 +156,11 @@ class AjaxController extends BaseController {
       printf('<p>An client error occurred: <code>%s</code></p>',
         htmlspecialchars($e->getMessage()));
     }
+  }
+
+  function getStartVote()
+  {
+
   }
 
 }

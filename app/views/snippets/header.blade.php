@@ -21,6 +21,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/min/$css.css") }}">
 @endif
 @endif
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/min/application.css") }}">
 <!-- End CSS -->
 
 <style>

@@ -43,12 +43,12 @@
 
 @media screen and (min-width: 768px) {
   .background {
-    background-image: url("http://lorempixel.com/1920/1080/cats");
+    background-image: url("/ajax/random-image/wallpapers");
   }
 }
 
 @media screen and (max-width: 768px) {
   .background {
-    background-image: url('http://lorempixel.com/640/480/cats');
+    background-image: url('/ajax/random-image/wallpapers');
   }
 }

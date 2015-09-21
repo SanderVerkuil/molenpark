@@ -7,7 +7,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"cornford/bootstrapper": "1.*",
-		"way/generators": "~3.0",
+		"way/generators": "~2.0",
 		"google/apiclient": "1.0.*@beta",
 		"doctrine/dbal": "dev-master",
 		"ise/php-soundcloud": "3.*"

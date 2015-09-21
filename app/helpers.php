@@ -22,4 +22,8 @@ function titleCase($str) {
     return ucfirst($str);
 }
 
+function isVoteRunning() {
+    
+}
+
 ?>
