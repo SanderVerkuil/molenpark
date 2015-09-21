@@ -22,3 +22,5 @@ Route::controller('songs', 'SongsController');
 Route::controller('users', 'UsersController');
 
 Route::controller('ajax', 'AjaxController');
+
+Route::controller('vote', 'VoteController');

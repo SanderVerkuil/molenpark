@@ -55,8 +55,9 @@ class AjaxController extends BaseController {
     curl_setopt_array($curl, array(
       CURLOPT_RETURNTRANSFER => 1,
       CURLOPT_URL => $url,
-      CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0"
-      ));
+      CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0",
+      CURLOPT_SSL_VERIFYPEER => false
+    ));
     $response = curl_exec($curl);
     if(!$response){
       die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));

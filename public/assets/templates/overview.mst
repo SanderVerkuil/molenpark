@@ -1,66 +1,32 @@
   <table id="results" class='table-striped table table-bordered table-hover'>
   <thead>
   <tr>
-    <th colspan='9' class='meta'>
-    Nummer {{from}} tot {{to}}. Pagina {{current_page}} van {{last_page}}
-    </th>
+    <th colspan='9' class='meta'>Nummer {{from}} tot {{to}}. Pagina {{current_page}} van {{last_page}}</th>
   </tr>
   <tr>
-    <th class="status hidden-xs">
-      Status
-    </th>
-    <th class="artist">
-      Artiest
-    </th>
-    <th class="track">
-      Track
-    </th>
-    <th class="album hidden-xs hidden-sm">
-      Album
-    </th>
-    <th class="nr hidden-xs hidden-sm">
-      Tracknummer
-    </th>
-    <th class="hidden-xs">
-      Aanvrager
-    </th>
-    <th class="hidden-xs hidden-sm">
-      Aangevraagd op
-    </th>
-    <th class="hidden-xs hidden-sm">
-      Laatste update
-    </th>
+    <th class="status hidden-xs">Status</th>
+    <th class="artist">Artiest</th>
+    <th class="track">Titel</th>
+    <th class="album hidden-xs hidden-sm">Album</th>
+    <th class="nr hidden-xs hidden-sm">#</th>
+    <th class="hidden-xs">Aanvrager</th>
+    <th class="hidden-xs hidden-sm">Aangevraagd op</th>
+    <th class="hidden-xs hidden-sm">Laatste update</th>
     <th class="hidden-xs hidden-sm">YouTube</th>
   </tr>
   </thead>
   {{#data}}
   <tr>
-    <td class="status hidden-xs">
-      {{status}}
-    </td>
-    <td class="artist">
-      {{artist}}
-    </td>
-    <td class="track">
-      {{title}}
-    </td>
-    <td class="album hidden-xs hidden-sm">
-      {{album}}
-    </td>
-    <td class="nr hidden-xs hidden-sm">
-      {{track}}
-    </td>
-    <td class="requester hidden-xs">
-      {{requester}}
-    </td>
-    <td class="requested hidden-xs hidden-sm">
-      {{created_at}}
-    </td>
-    <td class="lastUpdate hidden-xs hidden-sm">
-      {{updated_at}}
-    </td>
+    <td class="status hidden-xs">{{status}}</td>
+    <td class="artist">{{artist}}</td>
+    <td class="track">{{title}}</td>
+    <td class="album hidden-xs hidden-sm">{{album}}</td>
+    <td class="nr hidden-xs hidden-sm">{{track}}</td>
+    <td class="requester hidden-xs">{{requester}}</td>
+    <td class="requested hidden-xs hidden-sm">{{created_at}}</td>
+    <td class="lastUpdate hidden-xs hidden-sm">{{updated_at}}</td>
     <td class="youtube hidden-xs hidden-sm">
-    <a href="http://youtu.be/{{youtube_key}}"><span class="glyphicon glyphicon-play"></span></a>
+    <a href="http://youtu.be/{{youtube_key}}" target="_blank"><span class="glyphicon glyphicon-play"></span> Play</a>
     </td>
   </tr>
   {{/data}}
