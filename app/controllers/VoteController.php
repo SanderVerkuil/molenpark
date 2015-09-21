@@ -15,4 +15,8 @@ class VoteController extends BaseController {
     ));
   }
 
+  public function getStart() {
+    return "Yay";
+  }
+
 }
