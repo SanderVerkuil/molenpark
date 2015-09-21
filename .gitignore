@@ -7,3 +7,12 @@ composer.phar
 .DS_Store
 Thumbs.db
 *.sublime-*
+npm-debug.log
+.env.*.php
+.env.php
+.DS_Store
+.idea
+Thumbs.db
+node_modules
+vendor/*
+workbench/*

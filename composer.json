@@ -13,7 +13,7 @@
 		"ise/php-soundcloud": "3.*"
 	},
 	"require-dev": {
-    	"barryvdh/laravel-debugbar": "dev-master"
+    	"barryvdh/laravel-debugbar": "~1.8"
     },
 	"autoload": {
 		"classmap": [
