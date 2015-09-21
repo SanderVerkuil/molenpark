@@ -42,18 +42,18 @@ class SongsController extends Controller {
 			"title" => "required",
 			"requester" => "required",
 			"link" => "required|url"
-		);
+			);
 
 		// Validate input
 		$validator = Validator::make(Input::all(), $rules);
 
 		if ($validator->fails()) {
 				// TODO: Remember form input...
-        return Redirect::to('song/create')->withErrors($validator, "song");
-    }
+			return Redirect::to('song/create')->withErrors($validator, "song");
+		}
 
     // Create new song
-    $song = Input::all();
+		$song = Input::all();
 
 		// Set or unset remember cookie
 		if (isset($song['remember-requester'])) {
@@ -63,9 +63,9 @@ class SongsController extends Controller {
 			$cookie = Cookie::forget("requester");
 		}
 
-    if (Song::whereRaw("LOWER(artist) = '".strtolower($song['artist'])."' AND LOWER(title) = '".strtolower($song['title'])."'")->count() > 0) {
-    	return Redirect::to('song/create')->with('error', "HEBBEN WE AL!!!")->withCookie($cookie);
-    }
+		if (Song::whereRaw("LOWER(artist) = '".strtolower($song['artist'])."' AND LOWER(title) = '".strtolower($song['title'])."'")->count() > 0) {
+			return Redirect::to('song/create')->with('error', "HEBBEN WE AL!!!")->withCookie($cookie);
+		}
 
 		Song::create($song);
 
@@ -149,12 +149,12 @@ class SongsController extends Controller {
 			$channels='';
 			$playlists='';
 		} catch (Google_ServiceException $e) {
-    	$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
-      	htmlspecialchars($e->getMessage()));
-  	} catch (Google_Exception $e) {
-    	$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
-     		htmlspecialchars($e->getMessage()));
-  	}
+			$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
+				htmlspecialchars($e->getMessage()));
+		} catch (Google_Exception $e) {
+			$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
+				htmlspecialchars($e->getMessage()));
+		}
 
 		$artist = urlencode($artist);
 		$title = urlencode($title);
@@ -171,12 +171,12 @@ class SongsController extends Controller {
 
 	private $status = array(
 		0 => "aangevraagd",
-	  1 => "ingestemd",
-	  2 => "uitgestemd",
-	  3 => "gekocht MP3",
-	  4 => "gekocht CD",
-	  5 => "onvindbaar",
-	  6 => "in collectie"
-	);
+		1 => "ingestemd",
+		2 => "uitgestemd",
+		3 => "gekocht MP3",
+		4 => "gekocht CD",
+		5 => "onvindbaar",
+		6 => "in collectie"
+		);
 
 }

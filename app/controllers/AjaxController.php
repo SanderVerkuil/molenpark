@@ -4,7 +4,7 @@ class AjaxController extends BaseController {
 
 	function getSongs($perPage = 5)
 	{
-
+    Debugbar::log(isVoteRunning());
     global $artist;
     $artist = Input::get("artist");
     $title = Input::get("title");

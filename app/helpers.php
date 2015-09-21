@@ -23,7 +23,10 @@ function titleCase($str) {
 }
 
 function isVoteRunning() {
-    
+    $vote = Voting::where('created_at', '<', 'date(\'now\')')->whereNull('ended')->first();
+    Debugbar::log($vote);
+
+    return !is_null($vote);
 }
 
 ?>
