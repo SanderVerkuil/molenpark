@@ -9,10 +9,14 @@ class AjaxController extends BaseController {
     $artist = Input::get("artist");
     $title = Input::get("title");
 
+    if (empty($artist) && empty($title))
+      return Response::json([]);
+
+
     $data = Song::where(function($q){
       global $artist;
-      $q->where('artist', 'LIKE', "$artist%")->orWhere('artist', 'LIKE', "the $artist%");
-    })->where('title',  'LIKE', "$title%", 'AND')->orderBy('updated_at', 'DESC')->paginate($perPage);
+      $q->where('artist', 'LIKE', "%$artist%");
+    })->where('title',  'LIKE', "%$title%", 'AND')->orderBy('updated_at', 'DESC')->paginate($perPage);
 
     return Response::json($data);
   }
