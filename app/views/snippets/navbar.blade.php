@@ -14,7 +14,12 @@
     <!-- Everything you want hidden at 940px or less, place within here -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="{{{ URL::to('song/create') }}}">Aanvragen</a></li>
+        <li><a href="{{ URL::to('song/create') }}">Aanvragen</a></li>
+        @if (Auth::check())
+          @if (Auth::user()->canStartVoting())
+          <li><a href="{{ URL::to('vote') }}">Stemmen</a></li>
+          @endif
+        @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())

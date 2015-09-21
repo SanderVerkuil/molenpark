@@ -3,9 +3,16 @@
 class VoteController extends BaseController {
   
   public function getIndex() {
-    return View::make('vote');
+    // Needs logged in user with voting privileges
+    if (!(Auth::check() && Auth::user()->canStartVoting())) {
+      return Redirect::to('/');
+    }
+
+    $songs = Song::requests()->get();
+
+    return View::make('vote.index', array(
+      'songs' => $songs
+    ));
   }
 
 }
-
-?>

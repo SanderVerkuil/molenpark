@@ -11,17 +11,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
   public static $rules = array(
-    'email'=>'required|email',
+    'email'=>'required|email|unique:users',
     'wachtwoord'=>'required|alpha_num|confirmed|min:5',
     'wachtwoord_confirmation'=>'required|alpha_num|min:5',
-    'gebruikersnaam'=>'required|alpha|min:2'
+    'gebruikersnaam'=>'required|alpha|unique:users,username|min:2'
   );
 
   public function canStartVoting()
   {
     Debugbar::log(Auth::user());
 
-    return Auth::user()->username=="Admin";
+    return Auth::user()->username == "Admin";
   }
 
 	/**

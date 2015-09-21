@@ -50,17 +50,22 @@
         <label for="song-requester">Aanvrager</label>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-bullhorn"></span></div>
+          @if (Auth::check())
+          <input disabled type="text" name="requester" id="song-requester" class="form-control" value="{{ucfirst(Auth::user()->username)}}" placeholder="bijv. Je Moeder">
+          @else
           <input type="text" name="requester" id="song-requester" class="form-control" value="{{Cookie::get('requester')}}" placeholder="bijv. Je Moeder">
+          @endif
         </div>
         <div class="checkbox">
           @if (Auth::check())
           <label class="checkbox-inline">
             <input type="checkbox" name="song-priority"> Top 5 / Priority
           </label>
-          @endif
+          @else
           <label class="checkbox-inline">
             <input type="checkbox" name="remember-requester" @if (Cookie::get('requester')) checked="checked" @endif> Onthoud mij
           </label>
+          @endif
         </div>
       </div>
 
