@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top{{{Request::is('users/*') ? ' navbar-opaque' : ''}}}" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top{{Request::is('users/login') || Request::is('users/register') ? ' navbar-opaque' : ''}}" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" href="{{{ URL::to('') }}}">DiscoCie</a>
+      <a class="navbar-brand" href="{{ URL::to('') }}">DiscoCie</a>
     </div>
     <!-- Everything you want hidden at 940px or less, place within here -->
     <div class="collapse navbar-collapse">
@@ -18,6 +18,9 @@
         @if (Auth::check())
           @if (Auth::user()->canStartVoting())
           <li><a href="{{ URL::to('vote') }}">Stemmen</a></li>
+          @endif
+          @if (Auth::user()->canManageUsers())
+          <li><a href="{{ URL::to('users/manage') }}">Leden</a></li>
           @endif
         @endif
       </ul>

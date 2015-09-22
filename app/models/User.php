@@ -9,7 +9,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-
   public static $rules = array(
     'email'=>'required|email|unique:users',
     'wachtwoord'=>'required|alpha_num|confirmed|min:5',
@@ -17,11 +16,37 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     'gebruikersnaam'=>'required|alpha|unique:users,username|min:2'
   );
 
+  private static $permissions = array(
+    'hoofd' => array('manage','start_vote'),
+    'vice-hoofd' => array('start_vote'),
+    '*' => array()
+  );
+
+  private static function checkPermission($function, $action) {
+    if (is_null($function))
+      $function = '*';
+
+    return isset(Auth::user()->permissions[$function])
+      ? in_array($action, Auth::user()->permissions[$function])
+      : false;
+  }
+
   public function canStartVoting()
   {
-    Debugbar::log(Auth::user());
+    if (!Auth::user())
+      return false;
 
-    return Auth::user()->username == "Admin";
+    return $this->checkPermission(Auth::user()->function, 'start_vote')
+      || Auth::user()->username == "Admin";
+  }
+
+  public function canManageUsers()
+  {
+    if (!Auth::user())
+      return false;
+
+    return $this->checkPermission(Auth::user()->function, 'manage_users')
+      || Auth::user()->username == "Admin";
   }
 
 	/**

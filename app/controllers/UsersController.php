@@ -57,6 +57,25 @@ class UsersController extends BaseController {
     return Redirect::to('/');
   }
 
+  public function getManage() {
+    if (!(Auth::check() && Auth::user()->canManageUsers())) {
+      return Redirect::to('/');
+    }
+
+    return View::make('users.manage', array(
+      'css' => 'users',
+      'users' => User::all()
+    ));
+  }
+
+  public function getEdit() {
+    return "TODO";
+  }
+
+  public function getDelete() {
+    return "TODO";
+  }
+
 }
 
 ?>
