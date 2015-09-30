@@ -14,12 +14,11 @@
 Route::get('/', 'SongsController@index');
 
 Route::post("song/store", 'SongsController@store');
-
 Route::resource("song", 'SongsController');
-
 Route::controller('songs', 'SongsController');
 
 Route::controller('users', 'UsersController');
+Route::resource('user', 'UsersController');
 
 Route::controller('ajax', 'AjaxController');
 

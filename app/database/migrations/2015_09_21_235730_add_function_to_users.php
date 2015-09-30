@@ -13,7 +13,7 @@ class AddFunctionToUsers extends Migration {
 	public function up()
 	{
 		Schema::table('users', function(Blueprint $table){
-			$table->enum('function', array('hoofd','vice-hoofd','emptor','riptor'))->nullable();
+			$table->enum('function', array_keys(Config::get('enum.functions')))->nullable();
 		});
 	}
 
@@ -26,7 +26,7 @@ class AddFunctionToUsers extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table){
 			if (Schema::hasColumn('users', 'function'))
-				$table->dropColumn('function');
+				Schema::dropColumn('users', 'function');
 		});
 	}
 

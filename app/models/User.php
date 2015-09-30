@@ -16,8 +16,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     'gebruikersnaam'=>'required|alpha|unique:users,username|min:2'
   );
 
+  public static $rulesUpdate = array(
+    'username' => 'required|alpha|unique:users|min:2'
+  );
+
   private static $permissions = array(
-    'hoofd' => array('manage','start_vote'),
+    'hoofd' => array('manage_users','start_vote'),
     'vice-hoofd' => array('start_vote'),
     '*' => array()
   );
@@ -26,8 +30,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     if (is_null($function))
       $function = '*';
 
-    return isset(Auth::user()->permissions[$function])
-      ? in_array($action, Auth::user()->permissions[$function])
+    return isset(User::$permissions[$function])
+      ? in_array($action, User::$permissions[$function])
       : false;
   }
 

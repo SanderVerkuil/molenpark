@@ -6,11 +6,29 @@ class UsersController extends BaseController {
     $this->beforeFilter('csrf', array('on'=>'post'));
   }
 
-  public function getRegister() {
+  /* RESTful Functions */
+
+  public function index() {
+    if (!(Auth::check() && Auth::user()->canManageUsers())) {
+      return Redirect::to('/');
+    }
+
+    return View::make('users.index', array(
+      'css' => 'users',
+      'users' => User::all()
+    ));
+  }
+
+  public function show($id) {
+    $user = User::find($id);
+    return View::make('users.show')->withUser($user);
+  }
+
+  public function create() {
     return View::make('users.signup', array("css" => "users"));
   }
 
-  public function postCreate()
+  public function store()
   {
     $validator = Validator::make(Input::all(), User::$rules);
 
@@ -30,8 +48,51 @@ class UsersController extends BaseController {
       // Validation didn't pass. :'(
       Session::flash('error', 'Er waren fouten met het opslaan');
       Debugbar::log($validator->messages());
-      return Redirect::to('users/register')->withErrors($validator)->withInput();
+      return Redirect::to('user/create')->withErrors($validator)->withInput();
     }
+  }
+
+  public function edit($id) {
+    if (!Auth::check() || !(Auth::user()->canManageUsers() || Auth::user()->id == $id)) {
+      return Redirect::to('/');
+    }
+    $user = User::find($id);
+    return View::make('users.edit')->withUser($user);
+  }
+
+  public function update($id) {
+    $user = User::find($id);
+
+    $validator = Validator::make(Input::all(), User::$rulesUpdate);
+    $validator->sometimes('function', 'unique:users', function($input) {
+      return $input->function != "";
+    });
+
+    if ($validator->fails()) {
+      Session::flash('error', 'Er waren fouten met het opslaan');
+      Debugbar::log($validator->messages());
+      return Redirect::action('user.edit', $id)->withErrors($validator)->withInput();
+    }
+    else {
+      $user->username = Input::get('username');
+      $user->function = Input::get('function');
+      $user->save();
+
+      Session::flash('success', 'Gebruiker is aangepast!');
+      return Redirect::action('user.edit', $id);
+    }
+  }
+
+  public function destroy($id) {
+    // TODO
+  }
+
+  /* End RESTful Functions */
+
+  /* Controller Functions */
+
+  public function getIndex() {
+    return $this->index();
   }
 
   public function getLogin() {
@@ -46,7 +107,7 @@ class UsersController extends BaseController {
       return Redirect::to('/');
     } else {
       Session::flash('error', 'Gebruikersnaam/wachtwoord combinatie niet gevonden');
-      return Redirect::to('users/login')->withInput();
+      return Redirect::to('user/login')->withInput();
     }
 
   }
@@ -57,24 +118,7 @@ class UsersController extends BaseController {
     return Redirect::to('/');
   }
 
-  public function getManage() {
-    if (!(Auth::check() && Auth::user()->canManageUsers())) {
-      return Redirect::to('/');
-    }
-
-    return View::make('users.manage', array(
-      'css' => 'users',
-      'users' => User::all()
-    ));
-  }
-
-  public function getEdit() {
-    return "TODO";
-  }
-
-  public function getDelete() {
-    return "TODO";
-  }
+  /* End Controller Functions */
 
 }
 

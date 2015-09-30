@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top{{Request::is('users/login') || Request::is('users/register') ? ' navbar-opaque' : ''}}" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top{{Request::is('users/login') || Request::is('user/create') ? ' navbar-opaque' : ''}}" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,7 +20,7 @@
           <li><a href="{{ URL::to('vote') }}">Stemmen</a></li>
           @endif
           @if (Auth::user()->canManageUsers())
-          <li><a href="{{ URL::to('users/manage') }}">Leden</a></li>
+          <li><a href="{{ URL::to('users') }}">Leden</a></li>
           @endif
         @endif
       </ul>

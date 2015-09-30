@@ -18,17 +18,17 @@
   @foreach ($users as $u)
     <tr>
       <td class="hidden-xs hidden-sm">{{ $u->id }}</td>
-      <td>{{ $u->username }}</td>
+      <td><a href="{{ URL::action('user.show', $u->id) }}">{{ $u->username }}</a></td>
       <td class="hidden-xs">{{ $u->email }}</td>
-      <td>{{ $u->function }}</td>
+      <td>@if ($u->function){{ Config::get('enum.functions')[$u->function] }}@endif</td>
       <td class="actions">
-        <a role="button" title="Bewerken" class="user-edit btn btn-success btn-xs" href="{{ URL::to('users/edit/'.$u->id) }}">
+        <a role="button" title="Bewerken" class="user-edit btn btn-success btn-xs" href="{{ URL::action('user.edit', $u->id) }}">
           <span class="glyphicon glyphicon-pencil"></span>
         </a>
         <a {{ $u->id == Auth::user()->id ? '' : 'disabled' }} role="button" title="Wachtwoord wijzigen" class="user-edit-pw btn btn-primary btn-xs" href="#">
           <span class="glyphicon glyphicon-lock"></span>
         </a>
-        <a role="button" title="Verwijderen" class="user-delete btn btn-danger btn-xs" href="{{ URL::to('users/delete/'.$u->id) }}" onclick="return confirm('Weet je het zeker?')">
+        <a role="button" title="Verwijderen" class="user-delete btn btn-danger btn-xs" href="{{ URL::action('user.destroy', $u->id) }}" onclick="return confirm('Weet je het zeker?')">
           <span class="glyphicon glyphicon-remove"></span>
         </a>
       </td>
