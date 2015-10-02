@@ -63,7 +63,11 @@ class UsersController extends BaseController {
   public function update($id) {
     $user = User::find($id);
 
-    $validator = Validator::make(Input::all(), User::$rulesUpdate);
+    $data = Input::all();
+    if ($data['username'] == $user->username)
+      unset($data['username']);
+
+    $validator = Validator::make($data, User::$rulesUpdate);
     $validator->sometimes('function', 'unique:users', function($input) {
       return $input->function != "";
     });
@@ -84,7 +88,7 @@ class UsersController extends BaseController {
   }
 
   public function destroy($id) {
-    // TODO
+    return "user.destroy: $id\nTODO";
   }
 
   /* End RESTful Functions */

@@ -1,6 +1,11 @@
 @extends('layouts/master')
 
 @section('content')
+<style>
+  .actions form {
+    display: inline;
+  }
+</style>
 
 <h2>Ledenlijst</h2>
 
@@ -28,9 +33,11 @@
         <a {{ $u->id == Auth::user()->id ? '' : 'disabled' }} role="button" title="Wachtwoord wijzigen" class="user-edit-pw btn btn-primary btn-xs" href="#">
           <span class="glyphicon glyphicon-lock"></span>
         </a>
-        <a role="button" title="Verwijderen" class="user-delete btn btn-danger btn-xs" href="{{ URL::action('user.destroy', $u->id) }}" onclick="return confirm('Weet je het zeker?')">
+        {{ Form::model($u, array('route' => array('user.destroy', $u->id), 'method' => 'DELETE')) }}
+        <button title="Verwijderen" class="user-delete btn btn-danger btn-xs" onclick="return confirm('Weet je het zeker?')">
           <span class="glyphicon glyphicon-remove"></span>
-        </a>
+        </button>
+        {{ Form::close() }}
       </td>
     </tr>
   @endforeach
