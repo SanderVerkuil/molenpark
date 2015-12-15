@@ -63,7 +63,10 @@ class SongsController extends Controller {
 			$cookie = Cookie::forget("requester");
 		}
 
-		if (Song::whereRaw("LOWER(artist) = '".strtolower($song['artist'])."' AND LOWER(title) = '".strtolower($song['title'])."'")->count() > 0) {
+		$artist = DB::getPdo()->quote($song['artist']);
+		$title = DB::getPdo()->quote($song['title']);
+
+		if (Song::whereRaw("LOWER(artist) = LOWER($artist) AND LOWER(title) = LOWER($title)")->count() > 0) {
 			return Redirect::to('song/create')->with('error', "HEBBEN WE AL!!!")->withCookie($cookie);
 		}
 
@@ -166,17 +169,7 @@ class SongsController extends Controller {
 
 	public static function getStatus($statusId)
 	{
-		return $status[$statusId];
+		return Config::get('enum.songstatus')[$statusId];
 	}
-
-	private $status = array(
-		0 => "aangevraagd",
-		1 => "ingestemd",
-		2 => "uitgestemd",
-		3 => "gekocht MP3",
-		4 => "gekocht CD",
-		5 => "onvindbaar",
-		6 => "in collectie"
-		);
 
 }

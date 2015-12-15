@@ -1,0 +1,117 @@
+body {
+  padding: 0 !important;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.sidebar {
+  height: 100vh;
+  padding: 65px 0 15px;
+  background: #eee;
+  overflow-y: auto;
+}
+
+.sidebar > * {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.sidebar > .queue {
+  width: 100%;
+  margin: 0;
+}
+
+.queue td {
+  padding: 5px;
+  vertical-align: top;
+}
+.queue td:first-child {
+  padding-left: 20px;
+}
+.queue td:last-child {
+  padding-right: 20px;
+}
+
+.queue .current td {
+  font-weight: bold;
+}
+
+.queue .voted td {
+  font-style: italic;
+  color: #aaa;
+}
+
+.queue td.requester {
+  text-align: right;
+}
+
+#status {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+  margin: 0;
+  padding: 0 15px;
+  background: #ccc;
+  font-size: 18px;
+  text-align: right;
+  line-height: 60px;
+}
+
+#status .num-left {
+  font-weight: bold;
+}
+
+/* MAIN */
+
+.main {
+  height: 100vh;
+  padding: 65px 15px 105px;
+}
+
+.current-song {
+  max-height: 80px;
+  margin: 0;
+  margin-bottom: 15px;
+  width: 100%;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.preview-container {
+  width: 100%;
+  min-height: 400px;
+  height: calc(100% - 95px);
+  text-align: center;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+}
+
+.vote-buttons {
+  position: absolute;
+  margin: 0;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.vote-buttons > div {
+  padding: 0 5px;
+}
+
+.btn-vote {
+  font-size: 40px;
+  padding: 10px 0;
+}
+
+@media (max-width: 767px) {
+  .btn-vote {
+    font-size: 20px;
+  }
+}

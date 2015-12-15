@@ -63,7 +63,15 @@ class UsersController extends BaseController {
   public function update($id) {
     $user = User::find($id);
 
+    if (!$user) {
+      return $this->store();
+    }
+
     $data = Input::all();
+    if (!isset($data['username'])) {
+      $data['username'] = $data['gebruikersnaam'];
+    }
+
     if ($data['username'] == $user->username)
       unset($data['username']);
 
@@ -111,7 +119,7 @@ class UsersController extends BaseController {
       return Redirect::to('/');
     } else {
       Session::flash('error', 'Gebruikersnaam/wachtwoord combinatie niet gevonden');
-      return Redirect::to('user/login')->withInput();
+      return Redirect::to('users/login')->withInput();
     }
 
   }

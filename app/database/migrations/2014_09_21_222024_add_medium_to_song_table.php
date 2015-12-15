@@ -28,8 +28,7 @@ class AddMediumToSongTable extends Migration {
 	{
 		Schema::table('song', function(Blueprint $table)
 		{
-			if (Schema::hasColumn('song', 'medium'))
-				$table->dropColumn('medium');
+			$table->dropColumn('medium');
 		});
 	}
 

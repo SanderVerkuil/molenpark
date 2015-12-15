@@ -20,7 +20,7 @@
             {{ Bootstrap::vertical()->text('gebruikersnaam', 'Gebruikersnaam') }}
             {{ Bootstrap::vertical()->password('wachtwoord', 'Wachtwoord') }}
             <p class="text-right">
-              <a href="{{ URL::to('users/register') }}">Nog geen account?</a>
+              <a href="{{ URL::to('user/create') }}">Nog geen account?</a>
             </p>
           </div>
           <div class="modal-footer">

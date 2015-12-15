@@ -28,8 +28,7 @@ class AddRemembertokenToUsers extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			if (Schema::hasColumn('users', 'remember_token'))
-				Schema::dropColumn('users', 'remember_token');
+			$table->dropColumn('remember_token');
 		});
 	}
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFunctionToUsers extends Migration {
+class AddVotedToSongsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,8 +12,8 @@ class AddFunctionToUsers extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function(Blueprint $table){
-			$table->enum('function', array_keys(Config::get('enum.functions')))->nullable();
+		Schema::table('song', function(Blueprint $table){
+			$table->boolean('voted')->default(false);
 		});
 	}
 
@@ -24,8 +24,8 @@ class AddFunctionToUsers extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function(Blueprint $table){
-			$table->dropColumn('function');
+		Schema::table('song', function(Blueprint $table){
+			$table->dropColumn('voted');
 		});
 	}
 

@@ -30,12 +30,7 @@ class AddAlbuminfoToSongTable extends Migration {
 	{
 		Schema::table('song', function(Blueprint $table)
 		{
-			if (Schema::hasColumn('song', 'album'))
-				$table->dropColumn('album');
-			if (Schema::hasColumn('song', 'track'))
-				$table->dropColumn('track');
-			if (Schema::hasColumn('song', 'remarks'))
-				$table->dropCOlumn('song', 'remarks');
+			$table->dropColumn(['album','track','remarks']);
 		});
 	}
 

@@ -158,9 +158,29 @@ class AjaxController extends BaseController {
     }
   }
 
-  function getStartVote()
+  function postVote($songId)
   {
-
+    $vote = Input::get('vote');
+    $song = Song::find($songId);
+    $song->voted = true;
+    if ($vote == 'YES') {
+      $song->status = 'ingestemd';
+    } else {
+      $song->status = 'uitgestemd';
+    }
+    $song->save();
+    return Response::json(true);
   }
 
+  function postEndVoting()
+  {
+    $search = Voting::current();
+    if ($search->count() > 0) {
+      $voting = $search->first();
+      $voting->ended = date("Y-m-d H:i:s");
+      $voting->save();
+      return Response::json(true);
+    }
+    return Response::json(false);
+  }
 }

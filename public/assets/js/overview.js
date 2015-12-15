@@ -6,7 +6,7 @@ $(document).ready(function() {
     LoadPage();
   })
 
-  LoadPage();
+  LoadPage(true);
 
   $("#search").submit(function(e) {
     console.log("submitted");
@@ -16,9 +16,10 @@ $(document).ready(function() {
   $(".song-search").keyup(LoadPage);
 })
 
-function LoadPage()
+function LoadPage(all)
 {
-  if ($("#artiest").val() == "" && $("#title").val() == "") {
+  all = all === undefined;
+  if ($("#artiest").val() == "" && $("#title").val() == "" && all) {
     return;
   }
 
@@ -38,8 +39,8 @@ function LoadPage()
   $.ajax({
     url: url,
     data: {
-      'artist': $("#artiest").val(),
-      'title': $("#title").val()
+      'artist': all ? '%' : $("#artiest").val(),
+      'title': all ? '%' : $("#title").val()
     },
     complete: function(jqxhr) {
       renderer.render({
@@ -56,5 +57,5 @@ function LoadPage()
     },
     dataType: "json",
     cache: false
-  })
+  });
 }

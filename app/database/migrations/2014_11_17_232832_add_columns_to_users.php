@@ -31,14 +31,7 @@ class AddColumnsToUsers extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			if (Schema::hasColumn('users', 'password'))
-				Schema::dropColumn('users', 'password');
-			if (Schema::hasColumn('users', 'email'))
-				Schema::dropColumn('users', 'email');
-			if (Schema::hasColumn('users', 'activation'))
-				Schema::dropColumn('users', 'activation');
-			if (Schema::hasColumn('users', 'activation_due'))
-				Schema::dropColumn('users', 'activation_due');
+			$table->dropColumn(['password','email','activation','activation_due']);
 		});
 	}
 

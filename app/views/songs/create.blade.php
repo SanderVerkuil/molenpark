@@ -51,16 +51,17 @@
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-bullhorn"></span></div>
           @if (Auth::check())
-          <input disabled type="text" name="requester" id="song-requester" class="form-control" value="{{ucfirst(Auth::user()->username)}}" placeholder="bijv. Je Moeder">
+          <input disabled type="text" name="requester" class="form-control" value="{{ucfirst(Auth::user()->username)}}" placeholder="bijv. Je Moeder">
+          <input type="hidden" name="requester" id="song-requester" value="{{ucfirst(Auth::user()->username)}}">
           @else
           <input type="text" name="requester" id="song-requester" class="form-control" value="{{Cookie::get('requester')}}" placeholder="bijv. Je Moeder">
           @endif
         </div>
         <div class="checkbox">
           @if (Auth::check())
-          <label class="checkbox-inline">
+          {{-- <label class="checkbox-inline">
             <input type="checkbox" name="song-priority"> Top 5 / Priority
-          </label>
+          </label> --}}
           @else
           <label class="checkbox-inline">
             <input type="checkbox" name="remember-requester" @if (Cookie::get('requester')) checked="checked" @endif> Onthoud mij

@@ -17,7 +17,7 @@
             <h4 class="modal-title">Registreren</h4>
           </div>
           <div class="modal-body">
-            {{ Form::open(array('url' => 'users/create')) }}
+            {{ Form::open(array('url' => 'user/create', 'method' => 'PUT')) }}
             {{ Bootstrap::vertical()->text('gebruikersnaam', 'Gebruikersnaam', null, $errors) }}
             {{ Bootstrap::vertical()->email('email', 'Emailadres', '', $errors) }}
             {{ Bootstrap::vertical()->password('wachtwoord', 'Wachtwoord', $errors) }}

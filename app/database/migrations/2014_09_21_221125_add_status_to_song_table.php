@@ -14,7 +14,7 @@ class AddStatusToSongTable extends Migration {
 	{
 		Schema::table('song', function(Blueprint $table)
 		{
-			$table->enum('status', array('aangevraagd', 'uitgestemd', 'onvindbaar', 'besteld'))->default('aangevraagd');
+			$table->enum('status', Config::get('enum.songstatus'))->default('aangevraagd');
 			$table->string('modifier')->nullable();
 		});
 	}
@@ -29,10 +29,7 @@ class AddStatusToSongTable extends Migration {
 	{
 		Schema::table('song', function(Blueprint $table)
 		{
-			if (Schema::hasColumn('song', 'status'))
-				$table->dropColumn('status');
-			if (Schema::hasColumn('song', 'modifier'))
-				$table->dropColumn('modifier');
+			$table->dropColumn(['status','modifier']);
 
 		});
 	}

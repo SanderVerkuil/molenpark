@@ -109,6 +109,11 @@ function UpdateSpotify()
               $("#song-link").val("");
               $("#song-link").removeAttr("readonly");
             }
+            if (isFilled(required)) {
+              $('#song-submit').removeAttr("disabled");
+            } else {
+              $('#song-submit').attr("disabled", "disabled");
+            }
           });
         }
       };
@@ -173,6 +178,10 @@ function isFilled(field)
   return $(field).val() !== "";
 }
 /* END functions */
+
+var required = [
+  '#song-link', '#song-title', '#song-artist', '#song-requester'
+];
 
 /* Document Ready */
 $(document).ready(function(){
@@ -247,9 +256,6 @@ $(document).ready(function(){
   $('.song-info').change(updateVideos);
   
   // Check required fields when typing
-  var required = [
-    '#song-link', '#song-title', '#song-artist', '#song-requester'
-  ];
   $('#song-form :input').on("keyup change", function (){
     if (isFilled(required)) {
       $('#song-submit').removeAttr("disabled");

@@ -20,6 +20,7 @@ class CreateSongTable extends Migration {
 			$table->string('requester');
 			$table->string('genre')->nullable();
 			$table->string('youtube_key')->nullable();
+			$table->string('link')->nullable();
 			$table->timestamps();
 		});
 	}

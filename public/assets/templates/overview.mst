@@ -26,7 +26,7 @@
     <td class="requested hidden-xs hidden-sm">{{created_at}}</td>
     <td class="lastUpdate hidden-xs hidden-sm">{{updated_at}}</td>
     <td class="youtube hidden-xs hidden-sm">
-    <a href="http://youtu.be/{{youtube_key}}" target="_blank"><span class="glyphicon glyphicon-play"></span> Play</a>
+      <a href="http://youtu.be/{{youtube_key}}" target="_blank"><span class="glyphicon glyphicon-play"></span> Play</a>
     </td>
   </tr>
   {{/data}}

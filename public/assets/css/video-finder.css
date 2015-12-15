@@ -77,7 +77,7 @@
 .glyphicon-spotify {
   width: 24px;
   height: 24px;
-  background-image: url(../img/spotify-black-128.png);
+  background-image: url(/assets/img/spotify-black-128.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -89,7 +89,7 @@
 }
 
 .btn-spotify:hover .glyphicon-spotify{
-  background-image: url(../img/spotify-white-128.png);
+  background-image: url(/assets/img/spotify-white-128.png);
 }
 
 .btn-spotify:hover {
