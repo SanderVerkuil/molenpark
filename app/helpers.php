@@ -11,9 +11,13 @@ function generateRandomString($length = 10) {
 
 function titleCase($str) {
     $words = explode(' ', $str);
-    $nocaps = array("the","in","of","and","a");
+    $nocaps = array("the","in","of","and","a","ft.","feat.","ft","feat");
+    $allcaps = array("DJ");
     foreach ($words as $i => $w) {
-        if (!in_array($w, $nocaps)) {
+        if (in_array($w, $allcaps)) {
+            $w = strtoupper($w);
+        }
+        else if (!in_array($w, $nocaps)) {
             $w = ucfirst($w);
         }
         $words[$i] = $w;

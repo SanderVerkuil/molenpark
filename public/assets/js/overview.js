@@ -2,9 +2,9 @@ var renderer = new Renderer();
 
 $(document).ready(function() {
 
-  $(window).hashchange(function(e) {
+  $(window).on('hashchange', function() {
     LoadPage();
-  })
+  });
 
   LoadPage(true);
 
@@ -19,7 +19,7 @@ $(document).ready(function() {
 function LoadPage(all)
 {
   all = all === undefined;
-  if ($("#artiest").val() == "" && $("#title").val() == "" && all) {
+  if ($("#artiest").val() == "" && $("#title").val() == "" && location.hash == "" && all) {
     return;
   }
 
