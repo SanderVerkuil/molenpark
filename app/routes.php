@@ -13,6 +13,8 @@
 
 Route::get('/', 'SongsController@index');
 
+Route::get('login', 'UsersController@getLogin');
+
 Route::post("song/store", 'SongsController@store');
 Route::resource("song", 'SongsController');
 Route::controller('songs', 'SongsController');
@@ -23,3 +25,5 @@ Route::resource('user', 'UsersController');
 Route::controller('ajax', 'AjaxController');
 
 Route::controller('vote', 'VoteController');
+
+Route::get('emptor', 'SongsController@getVoteResults');

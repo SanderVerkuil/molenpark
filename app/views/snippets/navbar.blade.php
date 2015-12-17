@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top{{Request::is('users/login') || Request::is('user/create') ? ' navbar-opaque' : ''}}" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top{{Request::is('login') || Request::is('user/create') ? ' navbar-opaque' : ''}}" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,13 +22,16 @@
           @if (Auth::user()->canManageUsers())
           <li><a href="{{ URL::to('users') }}">Leden</a></li>
           @endif
+          @if (Auth::user()->canBuySongs())
+          <li><a href="{{ URL::to('emptor') }}">Emptor</a></li>
+          @endif
         @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
           @include('layouts/loggedin')
         @else
-          <li><a href="{{URL::to('users/login')}}">Inloggen</a></li>
+          <li><a href="{{URL::to('login')}}">Inloggen</a></li>
         @endif
       </ul>
     </div>

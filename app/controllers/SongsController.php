@@ -52,7 +52,7 @@ class SongsController extends Controller {
 			return Redirect::to('song/create')->withErrors($validator, "song");
 		}
 
-    // Create new song
+		// Create new song
 		$song = Input::all();
 
 		// Set or unset remember cookie
@@ -170,6 +170,67 @@ class SongsController extends Controller {
 	public static function getStatus($statusId)
 	{
 		return Config::get('enum.songstatus')[$statusId];
+	}
+
+	private function curlRequest($url)
+	{
+		$ch = curl_init();
+		curl_setopt_array($ch, array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $url,
+			CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0",
+			CURLOPT_SSL_VERIFYPEER => false
+		));
+		$response = curl_exec($ch);
+		if (!$response){
+			die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+		}
+		return $response;
+	}
+
+	public function getSearchItunes($songId)
+	{
+		$song = Song::findOrFail($songId);
+		$term = urlencode($song->artist.' '.$song->title);
+		$urlBase = 'https://itunes.apple.com/search?media=music&country=nl&term=';
+		$url = $urlBase.$term;
+
+		$results = json_decode($this->curlRequest($url));
+
+		if ($results->resultCount == 0) {
+			$term = $song->title;
+			$url = $urlBase.$term;
+			$results = json_decode($this->curlRequest($url));
+
+			if ($results->resultCount == 0) {
+				$term = $song->artist;
+				$url = $urlBase.$term;
+				$results = json_decode($this->curlRequest($url));
+			}
+		}
+
+		return View::make('songs.itunes', array(
+			'song' => $song,
+			'results' => $results->results
+		));
+	}
+
+	function getVoteResults()
+	{
+		if (!Auth::check())
+			return Redirect::to('/login');
+
+		if (!Auth::user()->canBuySongs())
+			return Redirect::to('/');
+
+		if (Input::get('uitgestemd'))
+			$songs = Song::whereVoted(true)->orderBy('updated_at', 'desc')->get();
+		else
+			$songs = Song::votedYes()->get();
+		return View::make('songs.votes', array(
+			'javascripts' => array('emptor'),
+			'songs' => $songs
+		));
 	}
 
 }

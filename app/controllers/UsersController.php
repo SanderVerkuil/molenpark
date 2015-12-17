@@ -42,7 +42,7 @@ class UsersController extends BaseController {
       $user->save();
 
       Session::flash('success', 'Gebruiker is toegevoegd, er is een mail gestuurd voor de bevestiging!');
-      return Redirect::to('users/login');
+      return Redirect::to('login');
       // Validation passed
     } else {
       // Validation didn't pass. :'(
@@ -119,7 +119,7 @@ class UsersController extends BaseController {
       return Redirect::to('/');
     } else {
       Session::flash('error', 'Gebruikersnaam/wachtwoord combinatie niet gevonden');
-      return Redirect::to('users/login')->withInput();
+      return Redirect::to('login')->withInput();
     }
 
   }

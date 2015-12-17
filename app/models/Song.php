@@ -18,7 +18,7 @@ class Song extends Eloquent {
       $current = $current->first();
       // $previous = Voting::where('ended', '<', $current->created_at);
       $query = $query->whereVoted(false)
-        ;//->where('created_at', '<=', $current->created_at);
+        ->where('created_at', '<=', $current->created_at);
 
       /*if ($previous->count() > 0) {
         $previous = $previous->first();
@@ -28,6 +28,11 @@ class Song extends Eloquent {
     }
 
     return $query;
+  }
+
+  public function scopeVotedYes($query)
+  {
+    return $query->whereStatus('ingestemd')->orderBy('updated_at', 'desc');
   }
 
 }

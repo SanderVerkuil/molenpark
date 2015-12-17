@@ -22,8 +22,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   );
 
   private static $permissions = array(
-    'hoofd' => array('manage_users','start_vote'),
+    'hoofd' => array('manage_users','start_vote', 'buy_songs'),
     'vice-hoofd' => array('start_vote'),
+    'emptor' => array('buy_songs'),
     '*' => array()
   );
 
@@ -51,6 +52,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       return false;
 
     return $this->checkPermission(Auth::user()->function, 'manage_users')
+      || Auth::user()->username == "Admin";
+  }
+
+  public function canBuySongs()
+  {
+    if (!Auth::user())
+      return false;
+
+    return $this->checkPermission(Auth::user()->function, 'buy_songs')
       || Auth::user()->username == "Admin";
   }
 

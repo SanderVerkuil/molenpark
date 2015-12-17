@@ -30,7 +30,7 @@ class AjaxController extends BaseController {
 
     $regex = "/http(s)?:\/\/i\.imgur\.com\/[a-z0-9]*.(jpg|png)/i";
 
-    Debugbar::log(count($json->data->children));
+    // Debugbar::log(count($json->data->children));
 
     do {
       $image = rand(1, count($json->data->children))-1;
@@ -38,7 +38,8 @@ class AjaxController extends BaseController {
       $url = $json->data->children[$image]->data->url;
     } while (!preg_match($regex, $url));
 
-    return Response::make(file_get_contents($url), 200, ['content-type' => 'image/jpg']);
+    // return Response::make(file_get_contents($url), 200, ['content-type' => 'image/jpg']);
+    return Redirect::to($url);
   }
 
   function getSpotify($maxResults = 10)
@@ -183,4 +184,5 @@ class AjaxController extends BaseController {
     }
     return Response::json(false);
   }
+
 }
